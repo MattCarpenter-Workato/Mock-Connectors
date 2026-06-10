@@ -44,13 +44,7 @@
 
     authorization: {
       type: 'none'
-    },
-
-    # No base_uri / apply block -- this connector makes no HTTP requests.
-    base_uri: lambda do |_connection|
-      # Returned for completeness; never used because no requests are issued.
-      'https://mock.local'
-    end
+    }
   },
 
   # --------------------------------------------------------------------------
@@ -61,7 +55,7 @@
     {
       status: 'ok',
       connected: true,
-      instance: connection['instance_label'].presence || 'Demo Salesforce (Financial Services)',
+      instance: connection['instance_label'].presence || 'Demo Salesforce (Retail)',
       api_version: '60.0 (mock)',
       message: 'Mock Salesforce connection succeeded (no external call was made).'
     }

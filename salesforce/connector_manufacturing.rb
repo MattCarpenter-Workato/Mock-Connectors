@@ -18,12 +18,13 @@
 # All seed data lives inline in the `mock_data` method below. Nothing is
 # loaded from external files -- the connector is fully self-contained.
 #
-# Demo flavor: a believable HEALTHCARE / LIFE SCIENCES CRM (hospitals &
-# providers, payers/health plans, pharma/biotech, medical devices, home care).
+# Demo flavor: a believable mid-market MANUFACTURING / INDUSTRIAL CRM
+# (industrial equipment makers, metals, automotive parts, packaging,
+# robotics, tooling).
 # ============================================================================
 
 {
-  title: 'Mock Salesforce (Healthcare)',
+  title: 'Mock Salesforce (Manufacturing)',
 
   # --------------------------------------------------------------------------
   # CONNECTION
@@ -38,19 +39,13 @@
         label: 'Instance label',
         optional: true,
         hint: 'Display-only. A friendly name for this mock org. No effect on behavior.',
-        default: 'Demo Salesforce (Healthcare)'
+        default: 'Demo Salesforce (Manufacturing)'
       }
     ],
 
     authorization: {
       type: 'none'
-    },
-
-    # No base_uri / apply block -- this connector makes no HTTP requests.
-    base_uri: lambda do |_connection|
-      # Returned for completeness; never used because no requests are issued.
-      'https://mock.local'
-    end
+    }
   },
 
   # --------------------------------------------------------------------------
@@ -61,7 +56,7 @@
     {
       status: 'ok',
       connected: true,
-      instance: connection['instance_label'].presence || 'Demo Salesforce (Financial Services)',
+      instance: connection['instance_label'].presence || 'Demo Salesforce (Manufacturing)',
       api_version: '60.0 (mock)',
       message: 'Mock Salesforce connection succeeded (no external call was made).'
     }
@@ -917,89 +912,89 @@
     #   * 5 Users act as record Owners.
     #   * Accounts reference Owners; Contacts/Opportunities/Cases reference
     #     real AccountIds, OwnerIds, and (for Cases) ContactIds.
-    # A believable mid-market HEALTHCARE / LIFE SCIENCES book of business.
+    # A believable mid-market MANUFACTURING / INDUSTRIAL book of business.
     # All Ids are stable so demos and dedup behave deterministically.
     # ========================================================================
     mock_data: lambda do
       {
         'User' => [
           { 'Id' => '005RM0000001AAAAAA', 'Name' => 'Dana Whitfield',
-            'Email' => 'dwhitfield@demo-hc.example.com', 'IsActive' => true,
-            'Username' => 'dwhitfield@demo-hc.example.com' },
+            'Email' => 'dwhitfield@demo-mfg.example.com', 'IsActive' => true,
+            'Username' => 'dwhitfield@demo-mfg.example.com' },
           { 'Id' => '005RM0000002BBBBBB', 'Name' => 'Marcus Lindqvist',
-            'Email' => 'mlindqvist@demo-hc.example.com', 'IsActive' => true,
-            'Username' => 'mlindqvist@demo-hc.example.com' },
+            'Email' => 'mlindqvist@demo-mfg.example.com', 'IsActive' => true,
+            'Username' => 'mlindqvist@demo-mfg.example.com' },
           { 'Id' => '005RM0000003CCCCCC', 'Name' => 'Priya Raman',
-            'Email' => 'praman@demo-hc.example.com', 'IsActive' => true,
-            'Username' => 'praman@demo-hc.example.com' },
+            'Email' => 'praman@demo-mfg.example.com', 'IsActive' => true,
+            'Username' => 'praman@demo-mfg.example.com' },
           { 'Id' => '005RM0000004DDDDDD', 'Name' => 'Tobias Greer',
-            'Email' => 'tgreer@demo-hc.example.com', 'IsActive' => true,
-            'Username' => 'tgreer@demo-hc.example.com' },
+            'Email' => 'tgreer@demo-mfg.example.com', 'IsActive' => true,
+            'Username' => 'tgreer@demo-mfg.example.com' },
           { 'Id' => '005RM0000005EEEEEE', 'Name' => 'Sofia Castellano',
-            'Email' => 'scastellano@demo-hc.example.com', 'IsActive' => false,
-            'Username' => 'scastellano@demo-hc.example.com' }
+            'Email' => 'scastellano@demo-mfg.example.com', 'IsActive' => false,
+            'Username' => 'scastellano@demo-mfg.example.com' }
         ],
 
         'Account' => [
-          { 'Id' => '001RM0000001AAAAAA', 'Name' => 'Cedar Valley Health System',
-            'Industry' => 'Hospitals & Providers', 'AnnualRevenue' => 2_400_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://cedarvalleyhealth.example.com',
+          { 'Id' => '001RM0000001AAAAAA', 'Name' => 'Titan Industrial Equipment',
+            'Industry' => 'Industrial Machinery', 'AnnualRevenue' => 2_400_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://titanindustrial.example.com',
             'CreatedDate' => '2025-01-14T09:12:00Z', 'LastModifiedDate' => '2026-05-02T16:40:00Z' },
-          { 'Id' => '001RM0000002AAAAAA', 'Name' => 'Northstar Pediatric Group',
-            'Industry' => 'Ambulatory & Clinics', 'AnnualRevenue' => 78_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000002BBBBBB', 'Website' => 'https://northstarpediatric.example.com',
+          { 'Id' => '001RM0000002AAAAAA', 'Name' => 'Ferrous Steel Works',
+            'Industry' => 'Metals & Mining', 'AnnualRevenue' => 1_650_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000002BBBBBB', 'Website' => 'https://ferroussteel.example.com',
             'CreatedDate' => '2025-02-03T11:30:00Z', 'LastModifiedDate' => '2026-04-18T08:05:00Z' },
-          { 'Id' => '001RM0000003AAAAAA', 'Name' => 'Helix Genomics',
-            'Industry' => 'Biotechnology', 'AnnualRevenue' => 430_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://helixgenomics.example.com',
+          { 'Id' => '001RM0000003AAAAAA', 'Name' => 'Apex Robotics',
+            'Industry' => 'Automation/Robotics', 'AnnualRevenue' => 385_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://apexrobotics.example.com',
             'CreatedDate' => '2025-03-22T14:45:00Z', 'LastModifiedDate' => '2026-05-29T13:22:00Z' },
-          { 'Id' => '001RM0000004AAAAAA', 'Name' => 'Asclepius Medical Devices',
-            'Industry' => 'Medical Devices', 'AnnualRevenue' => 265_000_000, 'Type' => 'Prospect',
-            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://asclepiusdevices.example.com',
+          { 'Id' => '001RM0000004AAAAAA', 'Name' => 'Cascade Packaging',
+            'Industry' => 'Packaging', 'AnnualRevenue' => 230_000_000, 'Type' => 'Prospect',
+            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://cascadepackaging.example.com',
             'CreatedDate' => '2025-06-10T10:00:00Z', 'LastModifiedDate' => '2026-06-01T09:15:00Z' },
-          { 'Id' => '001RM0000005AAAAAA', 'Name' => 'BlueRiver Health Plan',
-            'Industry' => 'Health Insurance', 'AnnualRevenue' => 1_650_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000004DDDDDD', 'Website' => 'https://blueriverhealthplan.example.com',
+          { 'Id' => '001RM0000005AAAAAA', 'Name' => 'Continental Auto Parts',
+            'Industry' => 'Automotive', 'AnnualRevenue' => 1_120_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000004DDDDDD', 'Website' => 'https://continentalautoparts.example.com',
             'CreatedDate' => '2025-08-19T08:20:00Z', 'LastModifiedDate' => '2026-03-11T17:48:00Z' },
-          { 'Id' => '001RM0000006AAAAAA', 'Name' => 'Meridian Home Care',
-            'Industry' => 'Home Health', 'AnnualRevenue' => 56_000_000, 'Type' => 'Prospect',
-            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://meridianhomecare.example.com',
+          { 'Id' => '001RM0000006AAAAAA', 'Name' => 'Granite Tooling',
+            'Industry' => 'Tooling & Machining', 'AnnualRevenue' => 175_000_000, 'Type' => 'Prospect',
+            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://granitetooling.example.com',
             'CreatedDate' => '2025-11-05T15:10:00Z', 'LastModifiedDate' => '2026-05-20T12:00:00Z' }
         ],
 
         'Contact' => [
           { 'Id' => '003RM0000001AAAAAA', 'FirstName' => 'Eleanor', 'LastName' => 'Voss',
-            'Email' => 'eleanor.voss@cedarvalleyhealth.example.com', 'Title' => 'Chief Medical Officer',
+            'Email' => 'eleanor.voss@titanindustrial.example.com', 'Title' => 'VP of Operations',
             'AccountId' => '001RM0000001AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-212-555-0142',
             'CreatedDate' => '2025-01-15T10:00:00Z', 'LastModifiedDate' => '2026-05-02T16:41:00Z' },
           { 'Id' => '003RM0000002AAAAAA', 'FirstName' => 'Raj', 'LastName' => 'Patel',
-            'Email' => 'raj.patel@cedarvalleyhealth.example.com', 'Title' => 'VP, Clinical Informatics',
+            'Email' => 'raj.patel@titanindustrial.example.com', 'Title' => 'Plant Manager',
             'AccountId' => '001RM0000001AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-212-555-0188',
             'CreatedDate' => '2025-01-20T13:25:00Z', 'LastModifiedDate' => '2026-02-14T11:10:00Z' },
           { 'Id' => '003RM0000003AAAAAA', 'FirstName' => 'Grace', 'LastName' => 'Okafor',
-            'Email' => 'grace.okafor@northstarpediatric.example.com', 'Title' => 'Director of Revenue Cycle',
+            'Email' => 'grace.okafor@ferroussteel.example.com', 'Title' => 'Director of Supply Chain',
             'AccountId' => '001RM0000002AAAAAA', 'OwnerId' => '005RM0000002BBBBBB',
             'Phone' => '+1-617-555-0199',
             'CreatedDate' => '2025-02-05T09:40:00Z', 'LastModifiedDate' => '2026-04-18T08:06:00Z' },
           { 'Id' => '003RM0000004AAAAAA', 'FirstName' => 'Liam', 'LastName' => 'Donnelly',
-            'Email' => 'liam.donnelly@helixgenomics.example.com', 'Title' => 'VP, Regulatory Affairs',
+            'Email' => 'liam.donnelly@apexrobotics.example.com', 'Title' => 'VP Engineering',
             'AccountId' => '001RM0000003AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'Phone' => '+1-415-555-0123',
             'CreatedDate' => '2025-03-25T16:00:00Z', 'LastModifiedDate' => '2026-05-29T13:23:00Z' },
           { 'Id' => '003RM0000005AAAAAA', 'FirstName' => 'Hannah', 'LastName' => 'Kim',
-            'Email' => 'hannah.kim@asclepiusdevices.example.com', 'Title' => 'Director of Population Health',
+            'Email' => 'hannah.kim@cascadepackaging.example.com', 'Title' => 'Quality Manager',
             'AccountId' => '001RM0000004AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-646-555-0177',
             'CreatedDate' => '2025-06-12T12:30:00Z', 'LastModifiedDate' => '2026-06-01T09:16:00Z' },
           { 'Id' => '003RM0000006AAAAAA', 'FirstName' => 'Marcus', 'LastName' => 'Bauer',
-            'Email' => 'marcus.bauer@blueriverhealthplan.example.com', 'Title' => 'Head of Payer Relations',
+            'Email' => 'marcus.bauer@continentalautoparts.example.com', 'Title' => 'Director of Procurement',
             'AccountId' => '001RM0000005AAAAAA', 'OwnerId' => '005RM0000004DDDDDD',
             'Phone' => '+1-303-555-0166',
             'CreatedDate' => '2025-08-21T14:15:00Z', 'LastModifiedDate' => '2026-03-11T17:49:00Z' },
           { 'Id' => '003RM0000007AAAAAA', 'FirstName' => 'Yuki', 'LastName' => 'Tanaka',
-            'Email' => 'yuki.tanaka@meridianhomecare.example.com', 'Title' => 'Chief Nursing Officer',
+            'Email' => 'yuki.tanaka@granitetooling.example.com', 'Title' => 'Maintenance Manager',
             'AccountId' => '001RM0000006AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'Phone' => '+1-312-555-0150',
             'CreatedDate' => '2025-11-06T10:05:00Z', 'LastModifiedDate' => '2026-05-20T12:01:00Z' }
@@ -1007,88 +1002,88 @@
 
         'Lead' => [
           { 'Id' => '00QRM0000001AAAAAA', 'FirstName' => 'Olivia', 'LastName' => 'Nash',
-            'Company' => 'Lakeshore Surgical Center', 'Email' => 'onash@lakeshoresurgical.example.com',
+            'Company' => 'Vanguard Hydraulics', 'Email' => 'onash@vanguardhydraulics.example.com',
             'Status' => 'Open - Not Contacted', 'LeadSource' => 'Web', 'IsConverted' => false,
             'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-04-02T09:00:00Z', 'LastModifiedDate' => '2026-04-02T09:00:00Z' },
           { 'Id' => '00QRM0000002AAAAAA', 'FirstName' => 'Devon', 'LastName' => 'Reyes',
-            'Company' => 'Evergreen Dental Partners', 'Email' => 'dreyes@evergreendental.example.com',
+            'Company' => 'Sierra Castings', 'Email' => 'dreyes@sierracastings.example.com',
             'Status' => 'Working - Contacted', 'LeadSource' => 'Trade Show', 'IsConverted' => false,
             'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-04-20T11:45:00Z', 'LastModifiedDate' => '2026-05-15T10:30:00Z' },
           { 'Id' => '00QRM0000003AAAAAA', 'FirstName' => 'Amara', 'LastName' => 'Singh',
-            'Company' => 'Apex Diagnostics Lab', 'Email' => 'asingh@apexdiagnostics.example.com',
+            'Company' => 'Pinnacle Conveyor Systems', 'Email' => 'asingh@pinnacleconveyor.example.com',
             'Status' => 'Working - Contacted', 'LeadSource' => 'Referral', 'IsConverted' => false,
             'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-08T13:20:00Z', 'LastModifiedDate' => '2026-05-28T15:05:00Z' },
           { 'Id' => '00QRM0000004AAAAAA', 'FirstName' => 'Felix', 'LastName' => 'Moreau',
-            'Company' => 'Unity Behavioral Health', 'Email' => 'fmoreau@unitybehavioral.example.com',
+            'Company' => 'Delta Fasteners', 'Email' => 'fmoreau@deltafasteners.example.com',
             'Status' => 'Closed - Converted', 'LeadSource' => 'Partner', 'IsConverted' => true,
             'OwnerId' => '005RM0000004DDDDDD',
             'CreatedDate' => '2026-02-11T08:10:00Z', 'LastModifiedDate' => '2026-03-30T09:50:00Z' },
           { 'Id' => '00QRM0000005AAAAAA', 'FirstName' => 'Bianca', 'LastName' => 'Ferraro',
-            'Company' => 'Coastal Radiology Associates', 'Email' => 'bferraro@coastalradiology.example.com',
+            'Company' => 'Ridgeline Composites', 'Email' => 'bferraro@ridgelinecomposites.example.com',
             'Status' => 'Open - Not Contacted', 'LeadSource' => 'Web', 'IsConverted' => false,
             'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-06-03T07:55:00Z', 'LastModifiedDate' => '2026-06-03T07:55:00Z' }
         ],
 
         'Opportunity' => [
-          { 'Id' => '006RM0000001AAAAAA', 'Name' => 'Cedar Valley - EHR Modernization',
+          { 'Id' => '006RM0000001AAAAAA', 'Name' => 'Titan - MES Rollout',
             'AccountId' => '001RM0000001AAAAAA', 'StageName' => 'Negotiation/Review',
-            'Amount' => 1_250_000, 'CloseDate' => '2026-07-31', 'Probability' => 75,
+            'Amount' => 1_450_000, 'CloseDate' => '2026-07-31', 'Probability' => 75,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-01-18T09:30:00Z', 'LastModifiedDate' => '2026-05-02T16:42:00Z' },
-          { 'Id' => '006RM0000002AAAAAA', 'Name' => 'BlueRiver - Claims Automation',
-            'AccountId' => '001RM0000005AAAAAA', 'StageName' => 'Proposal/Price Quote',
-            'Amount' => 480_000, 'CloseDate' => '2026-08-15', 'Probability' => 60,
-            'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000004DDDDDD',
+          { 'Id' => '006RM0000002AAAAAA', 'Name' => 'Ferrous - Predictive Maintenance Platform',
+            'AccountId' => '001RM0000002AAAAAA', 'StageName' => 'Proposal/Price Quote',
+            'Amount' => 720_000, 'CloseDate' => '2026-08-15', 'Probability' => 60,
+            'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-02-08T10:15:00Z', 'LastModifiedDate' => '2026-04-18T08:07:00Z' },
-          { 'Id' => '006RM0000003AAAAAA', 'Name' => 'Northstar - Patient Engagement Portal',
-            'AccountId' => '001RM0000002AAAAAA', 'StageName' => 'Closed Won',
-            'Amount' => 220_000, 'CloseDate' => '2026-03-31', 'Probability' => 100,
-            'IsClosed' => true, 'IsWon' => true, 'OwnerId' => '005RM0000002BBBBBB',
+          { 'Id' => '006RM0000003AAAAAA', 'Name' => 'Apex - ERP Integration',
+            'AccountId' => '001RM0000003AAAAAA', 'StageName' => 'Closed Won',
+            'Amount' => 340_000, 'CloseDate' => '2026-03-31', 'Probability' => 100,
+            'IsClosed' => true, 'IsWon' => true, 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2025-12-01T14:00:00Z', 'LastModifiedDate' => '2026-03-31T18:00:00Z' },
-          { 'Id' => '006RM0000004AAAAAA', 'Name' => 'Asclepius - Telehealth Platform Rollout',
+          { 'Id' => '006RM0000004AAAAAA', 'Name' => 'Cascade - Quality Management System',
             'AccountId' => '001RM0000004AAAAAA', 'StageName' => 'Qualification',
-            'Amount' => 95_000, 'CloseDate' => '2026-09-30', 'Probability' => 30,
+            'Amount' => 165_000, 'CloseDate' => '2026-09-30', 'Probability' => 30,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-12T11:20:00Z', 'LastModifiedDate' => '2026-06-01T09:17:00Z' },
-          { 'Id' => '006RM0000005AAAAAA', 'Name' => 'Meridian - Lab Integration (HL7/FHIR)',
-            'AccountId' => '001RM0000006AAAAAA', 'StageName' => 'Closed Lost',
-            'Amount' => 150_000, 'CloseDate' => '2026-02-28', 'Probability' => 0,
-            'IsClosed' => true, 'IsWon' => false, 'OwnerId' => '005RM0000003CCCCCC',
+          { 'Id' => '006RM0000005AAAAAA', 'Name' => 'Continental - Warehouse/WMS Automation',
+            'AccountId' => '001RM0000005AAAAAA', 'StageName' => 'Closed Lost',
+            'Amount' => 280_000, 'CloseDate' => '2026-02-28', 'Probability' => 0,
+            'IsClosed' => true, 'IsWon' => false, 'OwnerId' => '005RM0000004DDDDDD',
             'CreatedDate' => '2025-10-15T09:00:00Z', 'LastModifiedDate' => '2026-02-28T17:30:00Z' },
-          { 'Id' => '006RM0000006AAAAAA', 'Name' => 'Helix - Population Health Analytics',
-            'AccountId' => '001RM0000003AAAAAA', 'StageName' => 'Needs Analysis',
-            'Amount' => 610_000, 'CloseDate' => '2026-10-31', 'Probability' => 45,
+          { 'Id' => '006RM0000006AAAAAA', 'Name' => 'Granite - Supplier Portal',
+            'AccountId' => '001RM0000006AAAAAA', 'StageName' => 'Needs Analysis',
+            'Amount' => 430_000, 'CloseDate' => '2026-10-31', 'Probability' => 45,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-03-09T13:40:00Z', 'LastModifiedDate' => '2026-05-20T12:02:00Z' }
         ],
 
         'Case' => [
           { 'Id' => '500RM0000001AAAAAA', 'CaseNumber' => '00001001',
-            'Subject' => 'HL7 interface dropping ADT messages', 'Status' => 'Working',
+            'Subject' => 'Production line down - PLC integration failure', 'Status' => 'Working',
             'Priority' => 'High', 'AccountId' => '001RM0000001AAAAAA',
             'ContactId' => '003RM0000002AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-25T08:30:00Z', 'LastModifiedDate' => '2026-05-26T10:15:00Z' },
           { 'Id' => '500RM0000002AAAAAA', 'CaseNumber' => '00001002',
-            'Subject' => 'Claims 837 file rejected by clearinghouse', 'Status' => 'Escalated',
-            'Priority' => 'High', 'AccountId' => '001RM0000005AAAAAA',
-            'ContactId' => '003RM0000006AAAAAA', 'OwnerId' => '005RM0000004DDDDDD',
+            'Subject' => 'ERP sync dropping work orders', 'Status' => 'Escalated',
+            'Priority' => 'High', 'AccountId' => '001RM0000002AAAAAA',
+            'ContactId' => '003RM0000003AAAAAA', 'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-05-30T14:05:00Z', 'LastModifiedDate' => '2026-06-02T09:00:00Z' },
           { 'Id' => '500RM0000003AAAAAA', 'CaseNumber' => '00001003',
-            'Subject' => 'Patient portal SSO login failures', 'Status' => 'New',
-            'Priority' => 'Medium', 'AccountId' => '001RM0000002AAAAAA',
-            'ContactId' => '003RM0000003AAAAAA', 'OwnerId' => '005RM0000002BBBBBB',
+            'Subject' => 'Supplier EDI 856 ASN rejected', 'Status' => 'New',
+            'Priority' => 'Medium', 'AccountId' => '001RM0000003AAAAAA',
+            'ContactId' => '003RM0000004AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-06-05T11:50:00Z', 'LastModifiedDate' => '2026-06-05T11:50:00Z' },
           { 'Id' => '500RM0000004AAAAAA', 'CaseNumber' => '00001004',
-            'Subject' => 'FHIR API returning 500 on appointment fetch', 'Status' => 'Closed',
+            'Subject' => 'SCADA telemetry feed offline', 'Status' => 'Closed',
             'Priority' => 'Low', 'AccountId' => '001RM0000004AAAAAA',
             'ContactId' => '003RM0000005AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-04-10T09:25:00Z', 'LastModifiedDate' => '2026-04-22T16:40:00Z' },
           { 'Id' => '500RM0000005AAAAAA', 'CaseNumber' => '00001005',
-            'Subject' => 'Eligibility check timing out', 'Status' => 'Working',
+            'Subject' => 'Inventory counts mismatched after sync', 'Status' => 'Working',
             'Priority' => 'Medium', 'AccountId' => '001RM0000006AAAAAA',
             'ContactId' => '003RM0000007AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-05-18T13:10:00Z', 'LastModifiedDate' => '2026-05-21T08:55:00Z' }

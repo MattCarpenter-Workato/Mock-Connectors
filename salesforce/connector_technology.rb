@@ -18,13 +18,12 @@
 # All seed data lives inline in the `mock_data` method below. Nothing is
 # loaded from external files -- the connector is fully self-contained.
 #
-# Demo flavor: a believable mid-market MANUFACTURING / INDUSTRIAL CRM
-# (industrial equipment makers, metals, automotive parts, packaging,
-# robotics, tooling).
+# Demo flavor: a believable TECHNOLOGY / B2B SaaS CRM (software, data &
+# analytics, developer tools, cloud infrastructure, security, AI).
 # ============================================================================
 
 {
-  title: 'Mock Salesforce (Manufacturing)',
+  title: 'Mock Salesforce (Technology)',
 
   # --------------------------------------------------------------------------
   # CONNECTION
@@ -39,19 +38,13 @@
         label: 'Instance label',
         optional: true,
         hint: 'Display-only. A friendly name for this mock org. No effect on behavior.',
-        default: 'Demo Salesforce (Manufacturing)'
+        default: 'Demo Salesforce (Technology)'
       }
     ],
 
     authorization: {
       type: 'none'
-    },
-
-    # No base_uri / apply block -- this connector makes no HTTP requests.
-    base_uri: lambda do |_connection|
-      # Returned for completeness; never used because no requests are issued.
-      'https://mock.local'
-    end
+    }
   },
 
   # --------------------------------------------------------------------------
@@ -62,7 +55,7 @@
     {
       status: 'ok',
       connected: true,
-      instance: connection['instance_label'].presence || 'Demo Salesforce (Financial Services)',
+      instance: connection['instance_label'].presence || 'Demo Salesforce (Technology)',
       api_version: '60.0 (mock)',
       message: 'Mock Salesforce connection succeeded (no external call was made).'
     }
@@ -918,89 +911,89 @@
     #   * 5 Users act as record Owners.
     #   * Accounts reference Owners; Contacts/Opportunities/Cases reference
     #     real AccountIds, OwnerIds, and (for Cases) ContactIds.
-    # A believable mid-market MANUFACTURING / INDUSTRIAL book of business.
+    # A believable TECHNOLOGY / B2B SaaS book of business.
     # All Ids are stable so demos and dedup behave deterministically.
     # ========================================================================
     mock_data: lambda do
       {
         'User' => [
           { 'Id' => '005RM0000001AAAAAA', 'Name' => 'Dana Whitfield',
-            'Email' => 'dwhitfield@demo-mfg.example.com', 'IsActive' => true,
-            'Username' => 'dwhitfield@demo-mfg.example.com' },
+            'Email' => 'dwhitfield@demo-tech.example.com', 'IsActive' => true,
+            'Username' => 'dwhitfield@demo-tech.example.com' },
           { 'Id' => '005RM0000002BBBBBB', 'Name' => 'Marcus Lindqvist',
-            'Email' => 'mlindqvist@demo-mfg.example.com', 'IsActive' => true,
-            'Username' => 'mlindqvist@demo-mfg.example.com' },
+            'Email' => 'mlindqvist@demo-tech.example.com', 'IsActive' => true,
+            'Username' => 'mlindqvist@demo-tech.example.com' },
           { 'Id' => '005RM0000003CCCCCC', 'Name' => 'Priya Raman',
-            'Email' => 'praman@demo-mfg.example.com', 'IsActive' => true,
-            'Username' => 'praman@demo-mfg.example.com' },
+            'Email' => 'praman@demo-tech.example.com', 'IsActive' => true,
+            'Username' => 'praman@demo-tech.example.com' },
           { 'Id' => '005RM0000004DDDDDD', 'Name' => 'Tobias Greer',
-            'Email' => 'tgreer@demo-mfg.example.com', 'IsActive' => true,
-            'Username' => 'tgreer@demo-mfg.example.com' },
+            'Email' => 'tgreer@demo-tech.example.com', 'IsActive' => true,
+            'Username' => 'tgreer@demo-tech.example.com' },
           { 'Id' => '005RM0000005EEEEEE', 'Name' => 'Sofia Castellano',
-            'Email' => 'scastellano@demo-mfg.example.com', 'IsActive' => false,
-            'Username' => 'scastellano@demo-mfg.example.com' }
+            'Email' => 'scastellano@demo-tech.example.com', 'IsActive' => false,
+            'Username' => 'scastellano@demo-tech.example.com' }
         ],
 
         'Account' => [
-          { 'Id' => '001RM0000001AAAAAA', 'Name' => 'Titan Industrial Equipment',
-            'Industry' => 'Industrial Machinery', 'AnnualRevenue' => 2_400_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://titanindustrial.example.com',
+          { 'Id' => '001RM0000001AAAAAA', 'Name' => 'Northwind Software',
+            'Industry' => 'SaaS', 'AnnualRevenue' => 240_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://northwindsoftware.example.com',
             'CreatedDate' => '2025-01-14T09:12:00Z', 'LastModifiedDate' => '2026-05-02T16:40:00Z' },
-          { 'Id' => '001RM0000002AAAAAA', 'Name' => 'Ferrous Steel Works',
-            'Industry' => 'Metals & Mining', 'AnnualRevenue' => 1_650_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000002BBBBBB', 'Website' => 'https://ferroussteel.example.com',
+          { 'Id' => '001RM0000002AAAAAA', 'Name' => 'Quantum Analytics',
+            'Industry' => 'Data & Analytics', 'AnnualRevenue' => 88_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000002BBBBBB', 'Website' => 'https://quantumanalytics.example.com',
             'CreatedDate' => '2025-02-03T11:30:00Z', 'LastModifiedDate' => '2026-04-18T08:05:00Z' },
-          { 'Id' => '001RM0000003AAAAAA', 'Name' => 'Apex Robotics',
-            'Industry' => 'Automation/Robotics', 'AnnualRevenue' => 385_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://apexrobotics.example.com',
+          { 'Id' => '001RM0000003AAAAAA', 'Name' => 'Cloudpeak Systems',
+            'Industry' => 'Cloud Infrastructure', 'AnnualRevenue' => 175_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://cloudpeaksystems.example.com',
             'CreatedDate' => '2025-03-22T14:45:00Z', 'LastModifiedDate' => '2026-05-29T13:22:00Z' },
-          { 'Id' => '001RM0000004AAAAAA', 'Name' => 'Cascade Packaging',
-            'Industry' => 'Packaging', 'AnnualRevenue' => 230_000_000, 'Type' => 'Prospect',
-            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://cascadepackaging.example.com',
+          { 'Id' => '001RM0000004AAAAAA', 'Name' => 'Bitforge DevTools',
+            'Industry' => 'Developer Tools', 'AnnualRevenue' => 32_000_000, 'Type' => 'Prospect',
+            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://bitforgedevtools.example.com',
             'CreatedDate' => '2025-06-10T10:00:00Z', 'LastModifiedDate' => '2026-06-01T09:15:00Z' },
-          { 'Id' => '001RM0000005AAAAAA', 'Name' => 'Continental Auto Parts',
-            'Industry' => 'Automotive', 'AnnualRevenue' => 1_120_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000004DDDDDD', 'Website' => 'https://continentalautoparts.example.com',
+          { 'Id' => '001RM0000005AAAAAA', 'Name' => 'Lumen AI',
+            'Industry' => 'Artificial Intelligence', 'AnnualRevenue' => 54_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000004DDDDDD', 'Website' => 'https://lumenai.example.com',
             'CreatedDate' => '2025-08-19T08:20:00Z', 'LastModifiedDate' => '2026-03-11T17:48:00Z' },
-          { 'Id' => '001RM0000006AAAAAA', 'Name' => 'Granite Tooling',
-            'Industry' => 'Tooling & Machining', 'AnnualRevenue' => 175_000_000, 'Type' => 'Prospect',
-            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://granitetooling.example.com',
+          { 'Id' => '001RM0000006AAAAAA', 'Name' => 'Stackline Security',
+            'Industry' => 'Cybersecurity', 'AnnualRevenue' => 121_000_000, 'Type' => 'Prospect',
+            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://stacklinesecurity.example.com',
             'CreatedDate' => '2025-11-05T15:10:00Z', 'LastModifiedDate' => '2026-05-20T12:00:00Z' }
         ],
 
         'Contact' => [
           { 'Id' => '003RM0000001AAAAAA', 'FirstName' => 'Eleanor', 'LastName' => 'Voss',
-            'Email' => 'eleanor.voss@titanindustrial.example.com', 'Title' => 'VP of Operations',
+            'Email' => 'eleanor.voss@northwindsoftware.example.com', 'Title' => 'VP Engineering',
             'AccountId' => '001RM0000001AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-212-555-0142',
             'CreatedDate' => '2025-01-15T10:00:00Z', 'LastModifiedDate' => '2026-05-02T16:41:00Z' },
           { 'Id' => '003RM0000002AAAAAA', 'FirstName' => 'Raj', 'LastName' => 'Patel',
-            'Email' => 'raj.patel@titanindustrial.example.com', 'Title' => 'Plant Manager',
+            'Email' => 'raj.patel@northwindsoftware.example.com', 'Title' => 'Director of RevOps',
             'AccountId' => '001RM0000001AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-212-555-0188',
             'CreatedDate' => '2025-01-20T13:25:00Z', 'LastModifiedDate' => '2026-02-14T11:10:00Z' },
           { 'Id' => '003RM0000003AAAAAA', 'FirstName' => 'Grace', 'LastName' => 'Okafor',
-            'Email' => 'grace.okafor@ferroussteel.example.com', 'Title' => 'Director of Supply Chain',
+            'Email' => 'grace.okafor@quantumanalytics.example.com', 'Title' => 'Chief Technology Officer',
             'AccountId' => '001RM0000002AAAAAA', 'OwnerId' => '005RM0000002BBBBBB',
             'Phone' => '+1-617-555-0199',
             'CreatedDate' => '2025-02-05T09:40:00Z', 'LastModifiedDate' => '2026-04-18T08:06:00Z' },
           { 'Id' => '003RM0000004AAAAAA', 'FirstName' => 'Liam', 'LastName' => 'Donnelly',
-            'Email' => 'liam.donnelly@apexrobotics.example.com', 'Title' => 'VP Engineering',
+            'Email' => 'liam.donnelly@cloudpeaksystems.example.com', 'Title' => 'Director of Platform',
             'AccountId' => '001RM0000003AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'Phone' => '+1-415-555-0123',
             'CreatedDate' => '2025-03-25T16:00:00Z', 'LastModifiedDate' => '2026-05-29T13:23:00Z' },
           { 'Id' => '003RM0000005AAAAAA', 'FirstName' => 'Hannah', 'LastName' => 'Kim',
-            'Email' => 'hannah.kim@cascadepackaging.example.com', 'Title' => 'Quality Manager',
+            'Email' => 'hannah.kim@bitforgedevtools.example.com', 'Title' => 'Head of Developer Relations',
             'AccountId' => '001RM0000004AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-646-555-0177',
             'CreatedDate' => '2025-06-12T12:30:00Z', 'LastModifiedDate' => '2026-06-01T09:16:00Z' },
           { 'Id' => '003RM0000006AAAAAA', 'FirstName' => 'Marcus', 'LastName' => 'Bauer',
-            'Email' => 'marcus.bauer@continentalautoparts.example.com', 'Title' => 'Director of Procurement',
+            'Email' => 'marcus.bauer@lumenai.example.com', 'Title' => 'VP Product',
             'AccountId' => '001RM0000005AAAAAA', 'OwnerId' => '005RM0000004DDDDDD',
             'Phone' => '+1-303-555-0166',
             'CreatedDate' => '2025-08-21T14:15:00Z', 'LastModifiedDate' => '2026-03-11T17:49:00Z' },
           { 'Id' => '003RM0000007AAAAAA', 'FirstName' => 'Yuki', 'LastName' => 'Tanaka',
-            'Email' => 'yuki.tanaka@granitetooling.example.com', 'Title' => 'Maintenance Manager',
+            'Email' => 'yuki.tanaka@stacklinesecurity.example.com', 'Title' => 'Director of Information Security',
             'AccountId' => '001RM0000006AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'Phone' => '+1-312-555-0150',
             'CreatedDate' => '2025-11-06T10:05:00Z', 'LastModifiedDate' => '2026-05-20T12:01:00Z' }
@@ -1008,88 +1001,88 @@
 
         'Lead' => [
           { 'Id' => '00QRM0000001AAAAAA', 'FirstName' => 'Olivia', 'LastName' => 'Nash',
-            'Company' => 'Vanguard Hydraulics', 'Email' => 'onash@vanguardhydraulics.example.com',
+            'Company' => 'Pixelware Labs', 'Email' => 'onash@pixelwarelabs.example.com',
             'Status' => 'Open - Not Contacted', 'LeadSource' => 'Web', 'IsConverted' => false,
             'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-04-02T09:00:00Z', 'LastModifiedDate' => '2026-04-02T09:00:00Z' },
           { 'Id' => '00QRM0000002AAAAAA', 'FirstName' => 'Devon', 'LastName' => 'Reyes',
-            'Company' => 'Sierra Castings', 'Email' => 'dreyes@sierracastings.example.com',
+            'Company' => 'Cobalt Streaming', 'Email' => 'dreyes@cobaltstreaming.example.com',
             'Status' => 'Working - Contacted', 'LeadSource' => 'Trade Show', 'IsConverted' => false,
             'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-04-20T11:45:00Z', 'LastModifiedDate' => '2026-05-15T10:30:00Z' },
           { 'Id' => '00QRM0000003AAAAAA', 'FirstName' => 'Amara', 'LastName' => 'Singh',
-            'Company' => 'Pinnacle Conveyor Systems', 'Email' => 'asingh@pinnacleconveyor.example.com',
+            'Company' => 'Nimbus DataOps', 'Email' => 'asingh@nimbusdataops.example.com',
             'Status' => 'Working - Contacted', 'LeadSource' => 'Referral', 'IsConverted' => false,
             'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-08T13:20:00Z', 'LastModifiedDate' => '2026-05-28T15:05:00Z' },
           { 'Id' => '00QRM0000004AAAAAA', 'FirstName' => 'Felix', 'LastName' => 'Moreau',
-            'Company' => 'Delta Fasteners', 'Email' => 'fmoreau@deltafasteners.example.com',
+            'Company' => 'Forge Identity', 'Email' => 'fmoreau@forgeidentity.example.com',
             'Status' => 'Closed - Converted', 'LeadSource' => 'Partner', 'IsConverted' => true,
             'OwnerId' => '005RM0000004DDDDDD',
             'CreatedDate' => '2026-02-11T08:10:00Z', 'LastModifiedDate' => '2026-03-30T09:50:00Z' },
           { 'Id' => '00QRM0000005AAAAAA', 'FirstName' => 'Bianca', 'LastName' => 'Ferraro',
-            'Company' => 'Ridgeline Composites', 'Email' => 'bferraro@ridgelinecomposites.example.com',
+            'Company' => 'Sentinel Cloud', 'Email' => 'bferraro@sentinelcloud.example.com',
             'Status' => 'Open - Not Contacted', 'LeadSource' => 'Web', 'IsConverted' => false,
             'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-06-03T07:55:00Z', 'LastModifiedDate' => '2026-06-03T07:55:00Z' }
         ],
 
         'Opportunity' => [
-          { 'Id' => '006RM0000001AAAAAA', 'Name' => 'Titan - MES Rollout',
+          { 'Id' => '006RM0000001AAAAAA', 'Name' => 'Northwind - Platform Expansion',
             'AccountId' => '001RM0000001AAAAAA', 'StageName' => 'Negotiation/Review',
-            'Amount' => 1_450_000, 'CloseDate' => '2026-07-31', 'Probability' => 75,
+            'Amount' => 480_000, 'CloseDate' => '2026-07-31', 'Probability' => 75,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-01-18T09:30:00Z', 'LastModifiedDate' => '2026-05-02T16:42:00Z' },
-          { 'Id' => '006RM0000002AAAAAA', 'Name' => 'Ferrous - Predictive Maintenance Platform',
+          { 'Id' => '006RM0000002AAAAAA', 'Name' => 'Quantum - Enterprise Plan Upgrade',
             'AccountId' => '001RM0000002AAAAAA', 'StageName' => 'Proposal/Price Quote',
-            'Amount' => 720_000, 'CloseDate' => '2026-08-15', 'Probability' => 60,
+            'Amount' => 210_000, 'CloseDate' => '2026-08-15', 'Probability' => 60,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-02-08T10:15:00Z', 'LastModifiedDate' => '2026-04-18T08:07:00Z' },
-          { 'Id' => '006RM0000003AAAAAA', 'Name' => 'Apex - ERP Integration',
+          { 'Id' => '006RM0000003AAAAAA', 'Name' => 'Cloudpeak - SSO/SCIM Rollout',
             'AccountId' => '001RM0000003AAAAAA', 'StageName' => 'Closed Won',
-            'Amount' => 340_000, 'CloseDate' => '2026-03-31', 'Probability' => 100,
+            'Amount' => 145_000, 'CloseDate' => '2026-03-31', 'Probability' => 100,
             'IsClosed' => true, 'IsWon' => true, 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2025-12-01T14:00:00Z', 'LastModifiedDate' => '2026-03-31T18:00:00Z' },
-          { 'Id' => '006RM0000004AAAAAA', 'Name' => 'Cascade - Quality Management System',
+          { 'Id' => '006RM0000004AAAAAA', 'Name' => 'Bitforge - API Gateway Migration',
             'AccountId' => '001RM0000004AAAAAA', 'StageName' => 'Qualification',
-            'Amount' => 165_000, 'CloseDate' => '2026-09-30', 'Probability' => 30,
+            'Amount' => 72_000, 'CloseDate' => '2026-09-30', 'Probability' => 30,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-12T11:20:00Z', 'LastModifiedDate' => '2026-06-01T09:17:00Z' },
-          { 'Id' => '006RM0000005AAAAAA', 'Name' => 'Continental - Warehouse/WMS Automation',
+          { 'Id' => '006RM0000005AAAAAA', 'Name' => 'Lumen AI - Data Warehouse Integration',
             'AccountId' => '001RM0000005AAAAAA', 'StageName' => 'Closed Lost',
-            'Amount' => 280_000, 'CloseDate' => '2026-02-28', 'Probability' => 0,
+            'Amount' => 130_000, 'CloseDate' => '2026-02-28', 'Probability' => 0,
             'IsClosed' => true, 'IsWon' => false, 'OwnerId' => '005RM0000004DDDDDD',
             'CreatedDate' => '2025-10-15T09:00:00Z', 'LastModifiedDate' => '2026-02-28T17:30:00Z' },
-          { 'Id' => '006RM0000006AAAAAA', 'Name' => 'Granite - Supplier Portal',
+          { 'Id' => '006RM0000006AAAAAA', 'Name' => 'Stackline - Observability Suite',
             'AccountId' => '001RM0000006AAAAAA', 'StageName' => 'Needs Analysis',
-            'Amount' => 430_000, 'CloseDate' => '2026-10-31', 'Probability' => 45,
+            'Amount' => 295_000, 'CloseDate' => '2026-10-31', 'Probability' => 45,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-03-09T13:40:00Z', 'LastModifiedDate' => '2026-05-20T12:02:00Z' }
         ],
 
         'Case' => [
           { 'Id' => '500RM0000001AAAAAA', 'CaseNumber' => '00001001',
-            'Subject' => 'Production line down - PLC integration failure', 'Status' => 'Working',
+            'Subject' => 'REST API returning 429 rate-limit errors', 'Status' => 'Working',
             'Priority' => 'High', 'AccountId' => '001RM0000001AAAAAA',
             'ContactId' => '003RM0000002AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-25T08:30:00Z', 'LastModifiedDate' => '2026-05-26T10:15:00Z' },
           { 'Id' => '500RM0000002AAAAAA', 'CaseNumber' => '00001002',
-            'Subject' => 'ERP sync dropping work orders', 'Status' => 'Escalated',
+            'Subject' => 'Webhook deliveries failing intermittently', 'Status' => 'Escalated',
             'Priority' => 'High', 'AccountId' => '001RM0000002AAAAAA',
             'ContactId' => '003RM0000003AAAAAA', 'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-05-30T14:05:00Z', 'LastModifiedDate' => '2026-06-02T09:00:00Z' },
           { 'Id' => '500RM0000003AAAAAA', 'CaseNumber' => '00001003',
-            'Subject' => 'Supplier EDI 856 ASN rejected', 'Status' => 'New',
+            'Subject' => 'SSO SAML assertion rejected', 'Status' => 'New',
             'Priority' => 'Medium', 'AccountId' => '001RM0000003AAAAAA',
             'ContactId' => '003RM0000004AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-06-05T11:50:00Z', 'LastModifiedDate' => '2026-06-05T11:50:00Z' },
           { 'Id' => '500RM0000004AAAAAA', 'CaseNumber' => '00001004',
-            'Subject' => 'SCADA telemetry feed offline', 'Status' => 'Closed',
+            'Subject' => 'SDK upgrade breaking pagination', 'Status' => 'Closed',
             'Priority' => 'Low', 'AccountId' => '001RM0000004AAAAAA',
             'ContactId' => '003RM0000005AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-04-10T09:25:00Z', 'LastModifiedDate' => '2026-04-22T16:40:00Z' },
           { 'Id' => '500RM0000005AAAAAA', 'CaseNumber' => '00001005',
-            'Subject' => 'Inventory counts mismatched after sync', 'Status' => 'Working',
+            'Subject' => 'Elevated p99 latency on prod cluster', 'Status' => 'Working',
             'Priority' => 'Medium', 'AccountId' => '001RM0000006AAAAAA',
             'ContactId' => '003RM0000007AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-05-18T13:10:00Z', 'LastModifiedDate' => '2026-05-21T08:55:00Z' }

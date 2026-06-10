@@ -18,12 +18,12 @@
 # All seed data lives inline in the `mock_data` method below. Nothing is
 # loaded from external files -- the connector is fully self-contained.
 #
-# Demo flavor: a believable TECHNOLOGY / B2B SaaS CRM (software, data &
-# analytics, developer tools, cloud infrastructure, security, AI).
+# Demo flavor: a believable mid-market FINANCIAL SERVICES CRM (banks,
+# insurers, wealth managers, payments, credit unions).
 # ============================================================================
 
 {
-  title: 'Mock Salesforce (Technology)',
+  title: 'Mock Salesforce (Financial Services)',
 
   # --------------------------------------------------------------------------
   # CONNECTION
@@ -38,19 +38,13 @@
         label: 'Instance label',
         optional: true,
         hint: 'Display-only. A friendly name for this mock org. No effect on behavior.',
-        default: 'Demo Salesforce (Technology)'
+        default: 'Demo Salesforce (Financial Services)'
       }
     ],
 
     authorization: {
       type: 'none'
-    },
-
-    # No base_uri / apply block -- this connector makes no HTTP requests.
-    base_uri: lambda do |_connection|
-      # Returned for completeness; never used because no requests are issued.
-      'https://mock.local'
-    end
+    }
   },
 
   # --------------------------------------------------------------------------
@@ -917,89 +911,89 @@
     #   * 5 Users act as record Owners.
     #   * Accounts reference Owners; Contacts/Opportunities/Cases reference
     #     real AccountIds, OwnerIds, and (for Cases) ContactIds.
-    # A believable TECHNOLOGY / B2B SaaS book of business.
+    # A believable mid-market FINANCIAL SERVICES book of business.
     # All Ids are stable so demos and dedup behave deterministically.
     # ========================================================================
     mock_data: lambda do
       {
         'User' => [
           { 'Id' => '005RM0000001AAAAAA', 'Name' => 'Dana Whitfield',
-            'Email' => 'dwhitfield@demo-tech.example.com', 'IsActive' => true,
-            'Username' => 'dwhitfield@demo-tech.example.com' },
+            'Email' => 'dwhitfield@demo-fs.example.com', 'IsActive' => true,
+            'Username' => 'dwhitfield@demo-fs.example.com' },
           { 'Id' => '005RM0000002BBBBBB', 'Name' => 'Marcus Lindqvist',
-            'Email' => 'mlindqvist@demo-tech.example.com', 'IsActive' => true,
-            'Username' => 'mlindqvist@demo-tech.example.com' },
+            'Email' => 'mlindqvist@demo-fs.example.com', 'IsActive' => true,
+            'Username' => 'mlindqvist@demo-fs.example.com' },
           { 'Id' => '005RM0000003CCCCCC', 'Name' => 'Priya Raman',
-            'Email' => 'praman@demo-tech.example.com', 'IsActive' => true,
-            'Username' => 'praman@demo-tech.example.com' },
+            'Email' => 'praman@demo-fs.example.com', 'IsActive' => true,
+            'Username' => 'praman@demo-fs.example.com' },
           { 'Id' => '005RM0000004DDDDDD', 'Name' => 'Tobias Greer',
-            'Email' => 'tgreer@demo-tech.example.com', 'IsActive' => true,
-            'Username' => 'tgreer@demo-tech.example.com' },
+            'Email' => 'tgreer@demo-fs.example.com', 'IsActive' => true,
+            'Username' => 'tgreer@demo-fs.example.com' },
           { 'Id' => '005RM0000005EEEEEE', 'Name' => 'Sofia Castellano',
-            'Email' => 'scastellano@demo-tech.example.com', 'IsActive' => false,
-            'Username' => 'scastellano@demo-tech.example.com' }
+            'Email' => 'scastellano@demo-fs.example.com', 'IsActive' => false,
+            'Username' => 'scastellano@demo-fs.example.com' }
         ],
 
         'Account' => [
-          { 'Id' => '001RM0000001AAAAAA', 'Name' => 'Northwind Software',
-            'Industry' => 'SaaS', 'AnnualRevenue' => 240_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://northwindsoftware.example.com',
+          { 'Id' => '001RM0000001AAAAAA', 'Name' => 'Meridian Capital Bank',
+            'Industry' => 'Banking', 'AnnualRevenue' => 1_850_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://meridiancapital.example.com',
             'CreatedDate' => '2025-01-14T09:12:00Z', 'LastModifiedDate' => '2026-05-02T16:40:00Z' },
-          { 'Id' => '001RM0000002AAAAAA', 'Name' => 'Quantum Analytics',
-            'Industry' => 'Data & Analytics', 'AnnualRevenue' => 88_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000002BBBBBB', 'Website' => 'https://quantumanalytics.example.com',
+          { 'Id' => '001RM0000002AAAAAA', 'Name' => 'Harbor Mutual Insurance',
+            'Industry' => 'Insurance', 'AnnualRevenue' => 920_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000002BBBBBB', 'Website' => 'https://harbormutual.example.com',
             'CreatedDate' => '2025-02-03T11:30:00Z', 'LastModifiedDate' => '2026-04-18T08:05:00Z' },
-          { 'Id' => '001RM0000003AAAAAA', 'Name' => 'Cloudpeak Systems',
-            'Industry' => 'Cloud Infrastructure', 'AnnualRevenue' => 175_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://cloudpeaksystems.example.com',
+          { 'Id' => '001RM0000003AAAAAA', 'Name' => 'Vantage Wealth Advisors',
+            'Industry' => 'Financial Services', 'AnnualRevenue' => 145_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://vantagewealth.example.com',
             'CreatedDate' => '2025-03-22T14:45:00Z', 'LastModifiedDate' => '2026-05-29T13:22:00Z' },
-          { 'Id' => '001RM0000004AAAAAA', 'Name' => 'Bitforge DevTools',
-            'Industry' => 'Developer Tools', 'AnnualRevenue' => 32_000_000, 'Type' => 'Prospect',
-            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://bitforgedevtools.example.com',
+          { 'Id' => '001RM0000004AAAAAA', 'Name' => 'Cobalt Payments',
+            'Industry' => 'FinTech', 'AnnualRevenue' => 67_500_000, 'Type' => 'Prospect',
+            'OwnerId' => '005RM0000001AAAAAA', 'Website' => 'https://cobaltpay.example.com',
             'CreatedDate' => '2025-06-10T10:00:00Z', 'LastModifiedDate' => '2026-06-01T09:15:00Z' },
-          { 'Id' => '001RM0000005AAAAAA', 'Name' => 'Lumen AI',
-            'Industry' => 'Artificial Intelligence', 'AnnualRevenue' => 54_000_000, 'Type' => 'Customer',
-            'OwnerId' => '005RM0000004DDDDDD', 'Website' => 'https://lumenai.example.com',
+          { 'Id' => '001RM0000005AAAAAA', 'Name' => 'Summit Credit Union',
+            'Industry' => 'Banking', 'AnnualRevenue' => 310_000_000, 'Type' => 'Customer',
+            'OwnerId' => '005RM0000004DDDDDD', 'Website' => 'https://summitcu.example.com',
             'CreatedDate' => '2025-08-19T08:20:00Z', 'LastModifiedDate' => '2026-03-11T17:48:00Z' },
-          { 'Id' => '001RM0000006AAAAAA', 'Name' => 'Stackline Security',
-            'Industry' => 'Cybersecurity', 'AnnualRevenue' => 121_000_000, 'Type' => 'Prospect',
-            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://stacklinesecurity.example.com',
+          { 'Id' => '001RM0000006AAAAAA', 'Name' => 'Ironclad Asset Management',
+            'Industry' => 'Asset Management', 'AnnualRevenue' => 540_000_000, 'Type' => 'Prospect',
+            'OwnerId' => '005RM0000003CCCCCC', 'Website' => 'https://ironcladam.example.com',
             'CreatedDate' => '2025-11-05T15:10:00Z', 'LastModifiedDate' => '2026-05-20T12:00:00Z' }
         ],
 
         'Contact' => [
           { 'Id' => '003RM0000001AAAAAA', 'FirstName' => 'Eleanor', 'LastName' => 'Voss',
-            'Email' => 'eleanor.voss@northwindsoftware.example.com', 'Title' => 'VP Engineering',
+            'Email' => 'eleanor.voss@meridiancapital.example.com', 'Title' => 'CFO',
             'AccountId' => '001RM0000001AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-212-555-0142',
             'CreatedDate' => '2025-01-15T10:00:00Z', 'LastModifiedDate' => '2026-05-02T16:41:00Z' },
           { 'Id' => '003RM0000002AAAAAA', 'FirstName' => 'Raj', 'LastName' => 'Patel',
-            'Email' => 'raj.patel@northwindsoftware.example.com', 'Title' => 'Director of RevOps',
+            'Email' => 'raj.patel@meridiancapital.example.com', 'Title' => 'VP, Treasury',
             'AccountId' => '001RM0000001AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-212-555-0188',
             'CreatedDate' => '2025-01-20T13:25:00Z', 'LastModifiedDate' => '2026-02-14T11:10:00Z' },
           { 'Id' => '003RM0000003AAAAAA', 'FirstName' => 'Grace', 'LastName' => 'Okafor',
-            'Email' => 'grace.okafor@quantumanalytics.example.com', 'Title' => 'Chief Technology Officer',
+            'Email' => 'grace.okafor@harbormutual.example.com', 'Title' => 'Chief Risk Officer',
             'AccountId' => '001RM0000002AAAAAA', 'OwnerId' => '005RM0000002BBBBBB',
             'Phone' => '+1-617-555-0199',
             'CreatedDate' => '2025-02-05T09:40:00Z', 'LastModifiedDate' => '2026-04-18T08:06:00Z' },
           { 'Id' => '003RM0000004AAAAAA', 'FirstName' => 'Liam', 'LastName' => 'Donnelly',
-            'Email' => 'liam.donnelly@cloudpeaksystems.example.com', 'Title' => 'Director of Platform',
+            'Email' => 'liam.donnelly@vantagewealth.example.com', 'Title' => 'Managing Director',
             'AccountId' => '001RM0000003AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'Phone' => '+1-415-555-0123',
             'CreatedDate' => '2025-03-25T16:00:00Z', 'LastModifiedDate' => '2026-05-29T13:23:00Z' },
           { 'Id' => '003RM0000005AAAAAA', 'FirstName' => 'Hannah', 'LastName' => 'Kim',
-            'Email' => 'hannah.kim@bitforgedevtools.example.com', 'Title' => 'Head of Developer Relations',
+            'Email' => 'hannah.kim@cobaltpay.example.com', 'Title' => 'Head of Partnerships',
             'AccountId' => '001RM0000004AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-646-555-0177',
             'CreatedDate' => '2025-06-12T12:30:00Z', 'LastModifiedDate' => '2026-06-01T09:16:00Z' },
           { 'Id' => '003RM0000006AAAAAA', 'FirstName' => 'Marcus', 'LastName' => 'Bauer',
-            'Email' => 'marcus.bauer@lumenai.example.com', 'Title' => 'VP Product',
+            'Email' => 'marcus.bauer@summitcu.example.com', 'Title' => 'COO',
             'AccountId' => '001RM0000005AAAAAA', 'OwnerId' => '005RM0000004DDDDDD',
             'Phone' => '+1-303-555-0166',
             'CreatedDate' => '2025-08-21T14:15:00Z', 'LastModifiedDate' => '2026-03-11T17:49:00Z' },
           { 'Id' => '003RM0000007AAAAAA', 'FirstName' => 'Yuki', 'LastName' => 'Tanaka',
-            'Email' => 'yuki.tanaka@stacklinesecurity.example.com', 'Title' => 'Director of Information Security',
+            'Email' => 'yuki.tanaka@ironcladam.example.com', 'Title' => 'Portfolio Manager',
             'AccountId' => '001RM0000006AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'Phone' => '+1-312-555-0150',
             'CreatedDate' => '2025-11-06T10:05:00Z', 'LastModifiedDate' => '2026-05-20T12:01:00Z' }
@@ -1007,88 +1001,88 @@
 
         'Lead' => [
           { 'Id' => '00QRM0000001AAAAAA', 'FirstName' => 'Olivia', 'LastName' => 'Nash',
-            'Company' => 'Pixelware Labs', 'Email' => 'onash@pixelwarelabs.example.com',
+            'Company' => 'Brightline Savings', 'Email' => 'onash@brightlinesavings.example.com',
             'Status' => 'Open - Not Contacted', 'LeadSource' => 'Web', 'IsConverted' => false,
             'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-04-02T09:00:00Z', 'LastModifiedDate' => '2026-04-02T09:00:00Z' },
           { 'Id' => '00QRM0000002AAAAAA', 'FirstName' => 'Devon', 'LastName' => 'Reyes',
-            'Company' => 'Cobalt Streaming', 'Email' => 'dreyes@cobaltstreaming.example.com',
+            'Company' => 'Northgate Trust', 'Email' => 'dreyes@northgatetrust.example.com',
             'Status' => 'Working - Contacted', 'LeadSource' => 'Trade Show', 'IsConverted' => false,
             'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-04-20T11:45:00Z', 'LastModifiedDate' => '2026-05-15T10:30:00Z' },
           { 'Id' => '00QRM0000003AAAAAA', 'FirstName' => 'Amara', 'LastName' => 'Singh',
-            'Company' => 'Nimbus DataOps', 'Email' => 'asingh@nimbusdataops.example.com',
+            'Company' => 'Pinnacle Lending', 'Email' => 'asingh@pinnaclelending.example.com',
             'Status' => 'Working - Contacted', 'LeadSource' => 'Referral', 'IsConverted' => false,
             'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-08T13:20:00Z', 'LastModifiedDate' => '2026-05-28T15:05:00Z' },
           { 'Id' => '00QRM0000004AAAAAA', 'FirstName' => 'Felix', 'LastName' => 'Moreau',
-            'Company' => 'Forge Identity', 'Email' => 'fmoreau@forgeidentity.example.com',
+            'Company' => 'Atlas Insurance Group', 'Email' => 'fmoreau@atlasinsure.example.com',
             'Status' => 'Closed - Converted', 'LeadSource' => 'Partner', 'IsConverted' => true,
             'OwnerId' => '005RM0000004DDDDDD',
             'CreatedDate' => '2026-02-11T08:10:00Z', 'LastModifiedDate' => '2026-03-30T09:50:00Z' },
           { 'Id' => '00QRM0000005AAAAAA', 'FirstName' => 'Bianca', 'LastName' => 'Ferraro',
-            'Company' => 'Sentinel Cloud', 'Email' => 'bferraro@sentinelcloud.example.com',
+            'Company' => 'Solstice Capital', 'Email' => 'bferraro@solsticecap.example.com',
             'Status' => 'Open - Not Contacted', 'LeadSource' => 'Web', 'IsConverted' => false,
             'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-06-03T07:55:00Z', 'LastModifiedDate' => '2026-06-03T07:55:00Z' }
         ],
 
         'Opportunity' => [
-          { 'Id' => '006RM0000001AAAAAA', 'Name' => 'Northwind - Platform Expansion',
+          { 'Id' => '006RM0000001AAAAAA', 'Name' => 'Meridian - Core Banking Modernization',
             'AccountId' => '001RM0000001AAAAAA', 'StageName' => 'Negotiation/Review',
-            'Amount' => 480_000, 'CloseDate' => '2026-07-31', 'Probability' => 75,
+            'Amount' => 1_250_000, 'CloseDate' => '2026-07-31', 'Probability' => 75,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-01-18T09:30:00Z', 'LastModifiedDate' => '2026-05-02T16:42:00Z' },
-          { 'Id' => '006RM0000002AAAAAA', 'Name' => 'Quantum - Enterprise Plan Upgrade',
+          { 'Id' => '006RM0000002AAAAAA', 'Name' => 'Harbor Mutual - Claims Automation',
             'AccountId' => '001RM0000002AAAAAA', 'StageName' => 'Proposal/Price Quote',
-            'Amount' => 210_000, 'CloseDate' => '2026-08-15', 'Probability' => 60,
+            'Amount' => 480_000, 'CloseDate' => '2026-08-15', 'Probability' => 60,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-02-08T10:15:00Z', 'LastModifiedDate' => '2026-04-18T08:07:00Z' },
-          { 'Id' => '006RM0000003AAAAAA', 'Name' => 'Cloudpeak - SSO/SCIM Rollout',
+          { 'Id' => '006RM0000003AAAAAA', 'Name' => 'Vantage - Advisor Portal Rollout',
             'AccountId' => '001RM0000003AAAAAA', 'StageName' => 'Closed Won',
-            'Amount' => 145_000, 'CloseDate' => '2026-03-31', 'Probability' => 100,
+            'Amount' => 220_000, 'CloseDate' => '2026-03-31', 'Probability' => 100,
             'IsClosed' => true, 'IsWon' => true, 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2025-12-01T14:00:00Z', 'LastModifiedDate' => '2026-03-31T18:00:00Z' },
-          { 'Id' => '006RM0000004AAAAAA', 'Name' => 'Bitforge - API Gateway Migration',
+          { 'Id' => '006RM0000004AAAAAA', 'Name' => 'Cobalt Payments - Platform Pilot',
             'AccountId' => '001RM0000004AAAAAA', 'StageName' => 'Qualification',
-            'Amount' => 72_000, 'CloseDate' => '2026-09-30', 'Probability' => 30,
+            'Amount' => 95_000, 'CloseDate' => '2026-09-30', 'Probability' => 30,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-12T11:20:00Z', 'LastModifiedDate' => '2026-06-01T09:17:00Z' },
-          { 'Id' => '006RM0000005AAAAAA', 'Name' => 'Lumen AI - Data Warehouse Integration',
+          { 'Id' => '006RM0000005AAAAAA', 'Name' => 'Summit CU - Digital Onboarding',
             'AccountId' => '001RM0000005AAAAAA', 'StageName' => 'Closed Lost',
-            'Amount' => 130_000, 'CloseDate' => '2026-02-28', 'Probability' => 0,
+            'Amount' => 150_000, 'CloseDate' => '2026-02-28', 'Probability' => 0,
             'IsClosed' => true, 'IsWon' => false, 'OwnerId' => '005RM0000004DDDDDD',
             'CreatedDate' => '2025-10-15T09:00:00Z', 'LastModifiedDate' => '2026-02-28T17:30:00Z' },
-          { 'Id' => '006RM0000006AAAAAA', 'Name' => 'Stackline - Observability Suite',
+          { 'Id' => '006RM0000006AAAAAA', 'Name' => 'Ironclad - Risk Analytics Suite',
             'AccountId' => '001RM0000006AAAAAA', 'StageName' => 'Needs Analysis',
-            'Amount' => 295_000, 'CloseDate' => '2026-10-31', 'Probability' => 45,
+            'Amount' => 610_000, 'CloseDate' => '2026-10-31', 'Probability' => 45,
             'IsClosed' => false, 'IsWon' => false, 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-03-09T13:40:00Z', 'LastModifiedDate' => '2026-05-20T12:02:00Z' }
         ],
 
         'Case' => [
           { 'Id' => '500RM0000001AAAAAA', 'CaseNumber' => '00001001',
-            'Subject' => 'REST API returning 429 rate-limit errors', 'Status' => 'Working',
+            'Subject' => 'Wire transfer API returning 500 errors', 'Status' => 'Working',
             'Priority' => 'High', 'AccountId' => '001RM0000001AAAAAA',
             'ContactId' => '003RM0000002AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-05-25T08:30:00Z', 'LastModifiedDate' => '2026-05-26T10:15:00Z' },
           { 'Id' => '500RM0000002AAAAAA', 'CaseNumber' => '00001002',
-            'Subject' => 'Webhook deliveries failing intermittently', 'Status' => 'Escalated',
+            'Subject' => 'Policyholder statements not generating', 'Status' => 'Escalated',
             'Priority' => 'High', 'AccountId' => '001RM0000002AAAAAA',
             'ContactId' => '003RM0000003AAAAAA', 'OwnerId' => '005RM0000002BBBBBB',
             'CreatedDate' => '2026-05-30T14:05:00Z', 'LastModifiedDate' => '2026-06-02T09:00:00Z' },
           { 'Id' => '500RM0000003AAAAAA', 'CaseNumber' => '00001003',
-            'Subject' => 'SSO SAML assertion rejected', 'Status' => 'New',
+            'Subject' => 'Advisor portal SSO intermittent login failures', 'Status' => 'New',
             'Priority' => 'Medium', 'AccountId' => '001RM0000003AAAAAA',
             'ContactId' => '003RM0000004AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-06-05T11:50:00Z', 'LastModifiedDate' => '2026-06-05T11:50:00Z' },
           { 'Id' => '500RM0000004AAAAAA', 'CaseNumber' => '00001004',
-            'Subject' => 'SDK upgrade breaking pagination', 'Status' => 'Closed',
+            'Subject' => 'Request to add sandbox environment', 'Status' => 'Closed',
             'Priority' => 'Low', 'AccountId' => '001RM0000004AAAAAA',
             'ContactId' => '003RM0000005AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'CreatedDate' => '2026-04-10T09:25:00Z', 'LastModifiedDate' => '2026-04-22T16:40:00Z' },
           { 'Id' => '500RM0000005AAAAAA', 'CaseNumber' => '00001005',
-            'Subject' => 'Elevated p99 latency on prod cluster', 'Status' => 'Working',
+            'Subject' => 'Onboarding data import mapping question', 'Status' => 'Working',
             'Priority' => 'Medium', 'AccountId' => '001RM0000006AAAAAA',
             'ContactId' => '003RM0000007AAAAAA', 'OwnerId' => '005RM0000003CCCCCC',
             'CreatedDate' => '2026-05-18T13:10:00Z', 'LastModifiedDate' => '2026-05-21T08:55:00Z' }
