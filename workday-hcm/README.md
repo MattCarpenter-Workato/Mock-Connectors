@@ -19,19 +19,21 @@ credentials, sandbox provisioning, or a live tenant.
 | File | Vertical | Organizations in seed data |
 |---|---|---|
 | [connector_financial_services.rb](connector_financial_services.rb) | Financial Services | Meridian Capital Bank (+ departments & cost centers) |
-| _connector_healthcare.rb_ | Healthcare | _coming — clone of FS with Cedar Valley Health System workforce_ |
-| _connector_manufacturing.rb_ | Manufacturing | _coming — Titan Industrial Equipment workforce_ |
-| _connector_retail.rb_ | Retail | _coming — Lark & Finch Apparel workforce_ |
-| _connector_technology.rb_ | Technology | _coming — Northwind Software workforce_ |
+| [connector_healthcare.rb](connector_healthcare.rb) | Healthcare | Cedar Valley Health System (clinicians shared with the Epic on FHIR mock) |
+| [connector_manufacturing.rb](connector_manufacturing.rb) | Manufacturing | Titan Industrial Equipment |
+| [connector_retail.rb](connector_retail.rb) | Retail | Lark & Finch Apparel |
+| [connector_technology.rb](connector_technology.rb) | Technology | Northwind Software |
 
-> **Only the Financial Services variant is built today.** The connector logic is vertical-
-> agnostic — adding a vertical means swapping the embedded `mock_data` (and the `title` /
-> tenant label). Everything in the shared reference below applies to every future variant.
+> **All five verticals are built.** The connector logic is vertical-agnostic — each variant is
+> the same connector with the embedded `mock_data` (and the `title` / tenant label) swapped.
+> Everything in the shared reference below applies to every variant.
 
-The Financial Services workforce anchors on **Meridian Capital Bank**, the same fictional
-company used in the Salesforce (FS), NetSuite (FS), ServiceNow, and Jack Henry mocks. Personas
-**James Whitfield** (contractor here; member/insured elsewhere) and **Maria Santos** recur
-across connectors so multi-system recipe demos feel like one enterprise.
+Each workforce anchors on its vertical's company (above), drawn from the repo's **shared sample
+world**. Recurring personas — **Eleanor Vance** (top executive), **Marcus Reyes** (HR director),
+**Priya Raman** and **Tobias Greer** (directors; also Epic clinicians in Healthcare),
+**James Whitfield** (the contractor / leaver), and **Maria Santos** (on-leave) — appear across the
+Salesforce and Epic mocks too, so multi-system recipe demos feel like one enterprise. See
+[../profiles/](../profiles/) for the full company/people roster and cross-connector identities.
 
 ---
 
@@ -175,6 +177,12 @@ every enterprise. Each playbook below is self-contained: **discovery questions**
 a **demo flow** (each step is a tiny recipe — a trigger + one connector action), and a **talk
 track** that ties each step back to the value of Workato + Workday. The JSON under each step
 lists the **field values** to enter in that action.
+
+> The playbooks below use the **Financial Services** seed data (Meridian Capital Bank). Every
+> vertical shares the **same record IDs and structure** (`WD-EMP-000001`…`000008`, the open req
+> `WD-POS-000005`, the submitted leave `WD-LVE-000003`), so the steps work verbatim in any
+> variant — only the names, titles, and company change. See [../profiles/](../profiles/) for each
+> vertical's roster.
 
 **Discovery questions**
 - How do you provision access today when someone joins — how many IT tickets does it take?
@@ -332,5 +340,6 @@ her `On_Leave` worker status) shows the in-progress state.
   WQL query, or RaaS endpoint (no joins, aggregation, or sorting beyond the trigger's cursor).
 - Business-process workflows, approval chains, effective-dating, and validation rules are not
   simulated — the seed `Status` values represent end states.
-- Only the **Financial Services** variant exists today; other verticals are clones with
-  swapped `mock_data`.
+- **All five verticals** (Financial Services, Healthcare, Manufacturing, Retail, Technology) ship
+  today; each is the same connector with `mock_data` swapped for its anchor company's workforce.
+  See [../profiles/](../profiles/) for the shared people/company roster and cross-connector links.

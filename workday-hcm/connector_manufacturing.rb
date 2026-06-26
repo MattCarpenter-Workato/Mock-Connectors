@@ -18,14 +18,16 @@
 # All seed data lives inline in the `mock_data` method below. Nothing is
 # loaded from external files -- the connector is fully self-contained.
 #
-# Demo flavor: a believable FINANCIAL SERVICES workforce anchored on
-# Meridian Capital Bank (shared across the Salesforce FS, NetSuite FS,
-# ServiceNow, and Jack Henry mocks for cross-connector recipe demos). The
-# joiner / mover / leaver (JML) story is the universal Workday use case.
+# Demo flavor: a believable MANUFACTURING workforce anchored on Titan
+# Industrial Equipment (the same company used as the anchor account in the
+# Salesforce Manufacturing mock). Recurring cross-connector personas (Eleanor
+# Vance, Marcus Reyes, Priya Raman, Tobias Greer, James Whitfield) appear here
+# as the workforce. The joiner / mover / leaver (JML) story is the universal
+# Workday use case.
 # ============================================================================
 
 {
-  title: 'Mock Workday HCM (Financial Services)',
+  title: 'Mock Workday HCM (Manufacturing)',
 
   # --------------------------------------------------------------------------
   # CONNECTION
@@ -40,7 +42,7 @@
         label: 'Tenant label',
         optional: true,
         hint: 'Display-only. A friendly name for this mock Workday tenant. No effect on behavior.',
-        default: 'Demo Workday (Financial Services)'
+        default: 'Demo Workday (Manufacturing)'
       }
     ],
 
@@ -57,7 +59,7 @@
     {
       status: 'ok',
       connected: true,
-      tenant: connection['tenant_label'].presence || 'Demo Workday (Financial Services)',
+      tenant: connection['tenant_label'].presence || 'Demo Workday (Manufacturing)',
       api_version: 'v40.0 (mock)',
       message: 'Mock Workday HCM connection succeeded (no external call was made).'
     }
@@ -807,29 +809,29 @@
     #     Manager_ID, and Worker_ID reference resolves to a real seed record.
     #   * 6 Positions (one open req for the joiner demo).
     #   * 4 Leave_Requests (one Submitted, for the new_leave_request demo).
-    # A believable FINANCIAL SERVICES workforce anchored on Meridian Capital
-    # Bank. All IDs are stable so demos and dedup behave deterministically.
-    # Cross-connector personas: James Whitfield and Maria Santos also appear in
-    # the Jack Henry and Guidewire mocks.
+    # A believable MANUFACTURING workforce anchored on Titan Industrial
+    # Equipment. All IDs are stable so demos and dedup behave deterministically.
+    # Cross-connector personas: Eleanor Vance, Marcus Reyes, Priya Raman, Tobias
+    # Greer, and James Whitfield also appear in the Salesforce Manufacturing mock.
     # ========================================================================
     mock_data: lambda do
       {
         'Organization' => [
-          { 'Org_ID' => 'WD-ORG-000001', 'Name' => 'Meridian Capital Bank',
+          { 'Org_ID' => 'WD-ORG-000001', 'Name' => 'Titan Industrial Equipment',
             'Org_Type' => 'Company', 'Manager_ID' => 'WD-EMP-000001',
             'Parent_Org_ID' => nil, 'Member_Count' => 8 },
-          { 'Org_ID' => 'WD-ORG-000002', 'Name' => 'Technology',
-            'Org_Type' => 'Department', 'Manager_ID' => 'WD-EMP-000003',
-            'Parent_Org_ID' => 'WD-ORG-000001', 'Member_Count' => 3 },
+          { 'Org_ID' => 'WD-ORG-000002', 'Name' => 'Operations',
+            'Org_Type' => 'Department', 'Manager_ID' => 'WD-EMP-000004',
+            'Parent_Org_ID' => 'WD-ORG-000001', 'Member_Count' => 4 },
           { 'Org_ID' => 'WD-ORG-000003', 'Name' => 'Human Resources',
             'Org_Type' => 'Department', 'Manager_ID' => 'WD-EMP-000002',
             'Parent_Org_ID' => 'WD-ORG-000001', 'Member_Count' => 2 },
-          { 'Org_ID' => 'WD-ORG-000004', 'Name' => 'CC-10001 Technology',
-            'Org_Type' => 'Cost_Center', 'Manager_ID' => 'WD-EMP-000003',
-            'Parent_Org_ID' => 'WD-ORG-000002', 'Member_Count' => 3 },
-          { 'Org_ID' => 'WD-ORG-000005', 'Name' => 'CC-10002 Corporate',
+          { 'Org_ID' => 'WD-ORG-000004', 'Name' => 'CC-10001 Plant Operations',
             'Org_Type' => 'Cost_Center', 'Manager_ID' => 'WD-EMP-000004',
-            'Parent_Org_ID' => 'WD-ORG-000001', 'Member_Count' => 5 }
+            'Parent_Org_ID' => 'WD-ORG-000002', 'Member_Count' => 5 },
+          { 'Org_ID' => 'WD-ORG-000005', 'Name' => 'CC-10002 Corporate',
+            'Org_Type' => 'Cost_Center', 'Manager_ID' => 'WD-EMP-000002',
+            'Parent_Org_ID' => 'WD-ORG-000001', 'Member_Count' => 3 }
         ],
 
         'Worker' => [
@@ -837,88 +839,88 @@
           { 'Worker_ID' => 'WD-EMP-000001', 'Employee_Number' => 'E10001',
             'Legal_Name' => { 'First_Name' => 'Eleanor', 'Last_Name' => 'Vance' },
             'Preferred_Name' => { 'First_Name' => 'Eleanor', 'Last_Name' => 'Vance' },
-            'Email' => 'eleanor.vance@meridiancapital.example.com',
+            'Email' => 'eleanor.vance@titanindustrial.example.com',
             'Position_Title' => 'Chief Operating Officer', 'Department' => 'Executive',
             'Cost_Center' => 'CC-10002', 'Manager_ID' => nil,
             'Hire_Date' => '2009-03-02', 'Status' => 'Active', 'Worker_Type' => 'Employee',
-            'Location' => 'New York, NY', 'Work_Phone' => '+1-212-555-0101',
+            'Location' => 'Cleveland, OH', 'Work_Phone' => '+1-216-555-0101',
             'Start_Date' => '2018-01-01', 'Updated_At' => '2026-01-12T15:30:00Z' },
 
           # 2. Director of HR.
           { 'Worker_ID' => 'WD-EMP-000002', 'Employee_Number' => 'E10002',
             'Legal_Name' => { 'First_Name' => 'Marcus', 'Last_Name' => 'Reyes' },
             'Preferred_Name' => { 'First_Name' => 'Marcus', 'Last_Name' => 'Reyes' },
-            'Email' => 'marcus.reyes@meridiancapital.example.com',
+            'Email' => 'marcus.reyes@titanindustrial.example.com',
             'Position_Title' => 'Director of Human Resources', 'Department' => 'Human Resources',
             'Cost_Center' => 'CC-10002', 'Manager_ID' => 'WD-EMP-000001',
             'Hire_Date' => '2014-06-16', 'Status' => 'Active', 'Worker_Type' => 'Employee',
-            'Location' => 'New York, NY', 'Work_Phone' => '+1-212-555-0102',
+            'Location' => 'Cleveland, OH', 'Work_Phone' => '+1-216-555-0102',
             'Start_Date' => '2020-03-01', 'Updated_At' => '2025-11-04T10:15:00Z' },
 
           # 3. Director of IT / Technology.
           { 'Worker_ID' => 'WD-EMP-000003', 'Employee_Number' => 'E10003',
             'Legal_Name' => { 'First_Name' => 'Priya', 'Last_Name' => 'Raman' },
             'Preferred_Name' => { 'First_Name' => 'Priya', 'Last_Name' => 'Raman' },
-            'Email' => 'priya.raman@meridiancapital.example.com',
+            'Email' => 'priya.raman@titanindustrial.example.com',
             'Position_Title' => 'Director of Information Technology', 'Department' => 'Technology',
             'Cost_Center' => 'CC-10001', 'Manager_ID' => 'WD-EMP-000001',
             'Hire_Date' => '2013-09-09', 'Status' => 'Active', 'Worker_Type' => 'Employee',
-            'Location' => 'New York, NY', 'Work_Phone' => '+1-212-555-0103',
+            'Location' => 'Cleveland, OH', 'Work_Phone' => '+1-216-555-0103',
             'Start_Date' => '2019-07-01', 'Updated_At' => '2026-02-20T09:00:00Z' },
 
-          # 4. Finance Manager.
+          # 4. Director of Operations.
           { 'Worker_ID' => 'WD-EMP-000004', 'Employee_Number' => 'E10004',
-            'Legal_Name' => { 'First_Name' => 'David', 'Last_Name' => 'Okonkwo' },
-            'Preferred_Name' => { 'First_Name' => 'Dave', 'Last_Name' => 'Okonkwo' },
-            'Email' => 'david.okonkwo@meridiancapital.example.com',
-            'Position_Title' => 'Finance Manager', 'Department' => 'Finance',
-            'Cost_Center' => 'CC-10002', 'Manager_ID' => 'WD-EMP-000001',
+            'Legal_Name' => { 'First_Name' => 'Tobias', 'Last_Name' => 'Greer' },
+            'Preferred_Name' => { 'First_Name' => 'Tobias', 'Last_Name' => 'Greer' },
+            'Email' => 'tobias.greer@titanindustrial.example.com',
+            'Position_Title' => 'Director of Operations', 'Department' => 'Operations',
+            'Cost_Center' => 'CC-10001', 'Manager_ID' => 'WD-EMP-000001',
             'Hire_Date' => '2016-02-01', 'Status' => 'Active', 'Worker_Type' => 'Employee',
-            'Location' => 'New York, NY', 'Work_Phone' => '+1-212-555-0104',
+            'Location' => 'Akron, OH', 'Work_Phone' => '+1-330-555-0104',
             'Start_Date' => '2021-04-01', 'Updated_At' => '2025-09-18T13:45:00Z' },
 
           # 5. Recently hired individual contributor (within 45 days of 2025-01-01).
           { 'Worker_ID' => 'WD-EMP-000005', 'Employee_Number' => 'E10005',
             'Legal_Name' => { 'First_Name' => 'Hannah', 'Last_Name' => 'Brooks' },
             'Preferred_Name' => { 'First_Name' => 'Hannah', 'Last_Name' => 'Brooks' },
-            'Email' => 'hannah.brooks@meridiancapital.example.com',
-            'Position_Title' => 'Financial Analyst', 'Department' => 'Finance',
-            'Cost_Center' => 'CC-10002', 'Manager_ID' => 'WD-EMP-000004',
+            'Email' => 'hannah.brooks@titanindustrial.example.com',
+            'Position_Title' => 'Process Engineer', 'Department' => 'Engineering',
+            'Cost_Center' => 'CC-10001', 'Manager_ID' => 'WD-EMP-000004',
             'Hire_Date' => '2025-01-06', 'Status' => 'Active', 'Worker_Type' => 'Employee',
-            'Location' => 'New York, NY', 'Work_Phone' => '+1-212-555-0105',
+            'Location' => 'Cleveland, OH', 'Work_Phone' => '+1-216-555-0105',
             'Start_Date' => '2025-01-06', 'Updated_At' => '2025-01-06T09:00:00Z' },
 
-          # 6. Mid-tenure individual contributor.
+          # 6. Mid-tenure individual contributor / mover.
           { 'Worker_ID' => 'WD-EMP-000006', 'Employee_Number' => 'E10006',
             'Legal_Name' => { 'First_Name' => 'Daniel', 'Last_Name' => 'Osei' },
             'Preferred_Name' => { 'First_Name' => 'Daniel', 'Last_Name' => 'Osei' },
-            'Email' => 'daniel.osei@meridiancapital.example.com',
-            'Position_Title' => 'Systems Administrator', 'Department' => 'Technology',
-            'Cost_Center' => 'CC-10001', 'Manager_ID' => 'WD-EMP-000003',
+            'Email' => 'daniel.osei@titanindustrial.example.com',
+            'Position_Title' => 'Maintenance Technician', 'Department' => 'Operations',
+            'Cost_Center' => 'CC-10001', 'Manager_ID' => 'WD-EMP-000004',
             'Hire_Date' => '2019-04-22', 'Status' => 'Active', 'Worker_Type' => 'Employee',
-            'Location' => 'Jersey City, NJ', 'Work_Phone' => '+1-201-555-0106',
+            'Location' => 'Detroit, MI', 'Work_Phone' => '+1-313-555-0106',
             'Start_Date' => '2019-04-22', 'Updated_At' => '2025-12-01T08:30:00Z' },
 
           # 7. Worker currently On_Leave (references WD-LVE-000001).
           { 'Worker_ID' => 'WD-EMP-000007', 'Employee_Number' => 'E10007',
             'Legal_Name' => { 'First_Name' => 'Maria', 'Last_Name' => 'Santos' },
             'Preferred_Name' => { 'First_Name' => 'Maria', 'Last_Name' => 'Santos' },
-            'Email' => 'maria.santos@meridiancapital.example.com',
+            'Email' => 'maria.santos@titanindustrial.example.com',
             'Position_Title' => 'HR Generalist', 'Department' => 'Human Resources',
             'Cost_Center' => 'CC-10002', 'Manager_ID' => 'WD-EMP-000002',
             'Hire_Date' => '2018-08-13', 'Status' => 'On_Leave', 'Worker_Type' => 'Employee',
-            'Location' => 'New York, NY', 'Work_Phone' => '+1-212-555-0107',
+            'Location' => 'Cleveland, OH', 'Work_Phone' => '+1-216-555-0107',
             'Start_Date' => '2018-08-13', 'Updated_At' => '2026-03-15T09:25:00Z' },
 
           # 8. Contractor.
           { 'Worker_ID' => 'WD-EMP-000008', 'Employee_Number' => 'C20001',
             'Legal_Name' => { 'First_Name' => 'James', 'Last_Name' => 'Whitfield' },
             'Preferred_Name' => { 'First_Name' => 'James', 'Last_Name' => 'Whitfield' },
-            'Email' => 'james.whitfield@contractor.meridiancapital.example.com',
+            'Email' => 'james.whitfield@contractor.titanindustrial.example.com',
             'Position_Title' => 'IT Support Contractor', 'Department' => 'Technology',
             'Cost_Center' => 'CC-10001', 'Manager_ID' => 'WD-EMP-000003',
             'Hire_Date' => '2024-10-01', 'Status' => 'Active', 'Worker_Type' => 'Contractor',
-            'Location' => 'Remote', 'Work_Phone' => '+1-646-555-0108',
+            'Location' => 'Remote', 'Work_Phone' => '+1-216-555-0108',
             'Start_Date' => '2024-10-01', 'Updated_At' => '2025-10-01T12:00:00Z' }
         ],
 
@@ -932,15 +934,15 @@
           { 'Position_ID' => 'WD-POS-000003', 'Title' => 'Director of Information Technology',
             'Department' => 'Technology', 'Grade' => 'Grade-13', 'Is_Open' => false,
             'Headcount_Budget' => 1, 'Incumbent_ID' => 'WD-EMP-000003' },
-          { 'Position_ID' => 'WD-POS-000004', 'Title' => 'Finance Manager',
-            'Department' => 'Finance', 'Grade' => 'Grade-11', 'Is_Open' => false,
+          { 'Position_ID' => 'WD-POS-000004', 'Title' => 'Director of Operations',
+            'Department' => 'Operations', 'Grade' => 'Grade-13', 'Is_Open' => false,
             'Headcount_Budget' => 1, 'Incumbent_ID' => 'WD-EMP-000004' },
           # Open req -- the target for the "joiner" demo.
-          { 'Position_ID' => 'WD-POS-000005', 'Title' => 'Senior Software Engineer',
-            'Department' => 'Technology', 'Grade' => 'Grade-10', 'Is_Open' => true,
+          { 'Position_ID' => 'WD-POS-000005', 'Title' => 'Manufacturing Engineer',
+            'Department' => 'Engineering', 'Grade' => 'Grade-10', 'Is_Open' => true,
             'Headcount_Budget' => 2, 'Incumbent_ID' => nil },
-          { 'Position_ID' => 'WD-POS-000006', 'Title' => 'Financial Analyst',
-            'Department' => 'Finance', 'Grade' => 'Grade-08', 'Is_Open' => false,
+          { 'Position_ID' => 'WD-POS-000006', 'Title' => 'Process Engineer',
+            'Department' => 'Engineering', 'Grade' => 'Grade-08', 'Is_Open' => false,
             'Headcount_Budget' => 1, 'Incumbent_ID' => 'WD-EMP-000005' }
         ],
 
@@ -953,7 +955,7 @@
           { 'Leave_ID' => 'WD-LVE-000002', 'Worker_ID' => 'WD-EMP-000006',
             'Leave_Type' => 'PTO', 'Start_Date' => '2026-07-06',
             'End_Date' => '2026-07-10', 'Status' => 'Approved', 'Total_Days' => 5,
-            'Submitted_Date' => '2026-06-01T14:05:00Z', 'Approved_By' => 'WD-EMP-000003' },
+            'Submitted_Date' => '2026-06-01T14:05:00Z', 'Approved_By' => 'WD-EMP-000004' },
           # Newly Submitted -- the target for the new_leave_request demo.
           { 'Leave_ID' => 'WD-LVE-000003', 'Worker_ID' => 'WD-EMP-000005',
             'Leave_Type' => 'FMLA', 'Start_Date' => '2026-06-29',

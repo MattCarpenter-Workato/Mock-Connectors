@@ -918,12 +918,12 @@
     mock_data: lambda do
       {
         'User' => [
-          { 'Id' => '005RM0000001AAAAAA', 'Name' => 'Dana Whitfield',
-            'Email' => 'dwhitfield@demo-mfg.example.com', 'IsActive' => true,
-            'Username' => 'dwhitfield@demo-mfg.example.com' },
-          { 'Id' => '005RM0000002BBBBBB', 'Name' => 'Marcus Lindqvist',
-            'Email' => 'mlindqvist@demo-mfg.example.com', 'IsActive' => true,
-            'Username' => 'mlindqvist@demo-mfg.example.com' },
+          { 'Id' => '005RM0000001AAAAAA', 'Name' => 'James Whitfield',
+            'Email' => 'jwhitfield@demo-mfg.example.com', 'IsActive' => true,
+            'Username' => 'jwhitfield@demo-mfg.example.com' },
+          { 'Id' => '005RM0000002BBBBBB', 'Name' => 'Marcus Reyes',
+            'Email' => 'mreyes@demo-mfg.example.com', 'IsActive' => true,
+            'Username' => 'mreyes@demo-mfg.example.com' },
           { 'Id' => '005RM0000003CCCCCC', 'Name' => 'Priya Raman',
             'Email' => 'praman@demo-mfg.example.com', 'IsActive' => true,
             'Username' => 'praman@demo-mfg.example.com' },
@@ -963,8 +963,8 @@
         ],
 
         'Contact' => [
-          { 'Id' => '003RM0000001AAAAAA', 'FirstName' => 'Eleanor', 'LastName' => 'Voss',
-            'Email' => 'eleanor.voss@titanindustrial.example.com', 'Title' => 'VP of Operations',
+          { 'Id' => '003RM0000001AAAAAA', 'FirstName' => 'Eleanor', 'LastName' => 'Vance',
+            'Email' => 'eleanor.vance@titanindustrial.example.com', 'Title' => 'VP of Operations',
             'AccountId' => '001RM0000001AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-212-555-0142',
             'CreatedDate' => '2025-01-15T10:00:00Z', 'LastModifiedDate' => '2026-05-02T16:41:00Z' },
