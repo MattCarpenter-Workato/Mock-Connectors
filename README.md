@@ -32,9 +32,10 @@ The repo is organized **one folder per mocked system**:
 |---|---|---|
 | [salesforce/](salesforce/) | **Salesforce** | 6 objects (Account, Contact, Lead, Opportunity, Case, User), 6 actions, 2 polling triggers, SOQL-lite. Ships in **5 industry verticals** (Financial Services, Healthcare, Manufacturing, Retail, Technology) with a per-vertical demo playbook. |
 | [epic-fhir/](epic-fhir/) | **Epic on FHIR (HL7 FHIR R4)** | 8 FHIR R4 resources, CRUD + search → Bundle, 2 polling triggers, FHIR-search-lite (params + date prefixes). Ships in **2 variants** — Provider (clinical) and Payer (coverage/claims) — with a per-variant demo playbook. |
+| [workday-hcm/](workday-hcm/) | **Workday HCM** | 4 objects (Worker, Position, Organization, Leave Request), 6 actions, 3 object-bound polling triggers for the **joiner / mover / leaver (JML)** pattern. Ships today in the **Financial Services** vertical (Meridian Capital Bank) with joiner/mover/leaver/leave demo playbooks; more verticals are clones with swapped data. |
 
 See each folder's own README for the object/action/trigger reference, setup steps, and demo
-scenarios. → [salesforce/README.md](salesforce/README.md) · [epic-fhir/README.md](epic-fhir/README.md)
+scenarios. → [salesforce/README.md](salesforce/README.md) · [epic-fhir/README.md](epic-fhir/README.md) · [workday-hcm/README.md](workday-hcm/README.md)
 
 *More mocked systems can be added as sibling folders following the same pattern.*
 
