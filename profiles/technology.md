@@ -7,7 +7,7 @@
 ## Companies
 
 | Company | Role in the world | Where it appears |
-|---|---|---|
+| --- | --- | --- |
 | **Northwind Software** | Anchor enterprise (Workday tenant; Salesforce account #1) | Salesforce, Workday |
 | Quantum Analytics | Customer (data & analytics) | Salesforce account |
 | Cloudpeak Systems | Customer (cloud infrastructure) | Salesforce account |
@@ -18,7 +18,7 @@
 ## Workday — Northwind Software workforce
 
 | Worker | Name | Title | Dept | Manager | Status | Type |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | `WD-EMP-000001` | **Eleanor Vance** | Chief Operating Officer | Executive | — | Active | Employee |
 | `WD-EMP-000002` | **Marcus Reyes** | Director of Human Resources | Human Resources | …0001 | Active | Employee |
 | `WD-EMP-000003` | **Priya Raman** | Director of Engineering | Engineering | …0001 | Active | Employee |
@@ -28,7 +28,7 @@
 | `WD-EMP-000007` | Maria Santos | HR Generalist | Human Resources | …0002 | **On_Leave** | Employee |
 | `WD-EMP-000008` | **James Whitfield** | IT Support Contractor | Technology | …0004 | Active | **Contractor** · **leaver** |
 
-```
+```text
 Eleanor Vance (COO)
 ├── Marcus Reyes (Dir HR)
 │   └── Maria Santos (HR Generalist, On_Leave)
@@ -47,7 +47,7 @@ JML demo targets: open req `WD-POS-000005` (Senior Software Engineer); submitted
 **Contacts:**
 
 | Name | Title | Company |
-|---|---|---|
+| --- | --- | --- |
 | **Eleanor Vance** | VP Engineering | Northwind Software |
 | Raj Patel | Director of RevOps | Northwind Software |
 | Grace Okafor | Chief Technology Officer | Quantum Analytics |

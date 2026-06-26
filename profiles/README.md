@@ -18,7 +18,7 @@ The same named people recur across connectors. We use **one roster, role per sys
 keeps one name and home company, and each connector casts them in the object type it models:
 
 | Connector | Casts the roster as… |
-|---|---|
+| --- | --- |
 | **Workday HCM** | the anchor company's internal **Workforce** (the Worker hierarchy) |
 | **Salesforce** | internal **Users** (record owners) + **Contacts** at the anchor & secondary accounts |
 | **Epic on FHIR** (healthcare only) | **Practitioners** (clinicians) + **Patients / Members** |
@@ -33,7 +33,7 @@ and — in healthcare — an Epic physician. Same name, same home company, three
 ## Anchor companies
 
 | Vertical | Anchor company | Appears in |
-|---|---|---|
+| --- | --- | --- |
 | [Financial Services](financial-services.md) | **Meridian Capital Bank** | Salesforce (FS), Workday (FS) |
 | [Healthcare](healthcare.md) | **Cedar Valley Health System** | Salesforce (HC), Epic Provider, Epic Payer, Workday (HC) |
 | [Manufacturing](manufacturing.md) | **Titan Industrial Equipment** | Salesforce (MFG), Workday (MFG) |
@@ -50,7 +50,7 @@ These people appear in **every** vertical, always with the same name. Their comp
 title are set per vertical (see each vertical file).
 
 | Person | Where they appear | Role they play |
-|---|---|---|
+| --- | --- | --- |
 | **Eleanor Vance** | Salesforce (Contact, anchor account) · Workday (Worker — top of hierarchy) | The anchor company's top executive |
 | **Marcus Reyes** | Salesforce (User) · Workday (Worker) | Director of Human Resources at the anchor |
 | **Priya Raman** | Salesforce (User) · Workday (Worker) · Epic (Practitioner, HC only) | A department director; the Family-Medicine physician in healthcare |
@@ -85,7 +85,7 @@ The seed data previously had name collisions (the "same" person under different 
 unified to one canonical identity each:
 
 | Was | Now | Note |
-|---|---|---|
+| --- | --- | --- |
 | Eleanor **Voss** (SF) / Eleanor **Vance** (WD) | **Eleanor Vance** | anchor top executive |
 | Priya **Nair** (WD) / Priya **Raman** (SF, Epic) | **Priya Raman** | one director/physician |
 | **Dana** Whitfield (SF User) / **James** Whitfield (WD contractor) | **James Whitfield** | single identity; powers the leaver demo |

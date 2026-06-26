@@ -16,7 +16,7 @@ with no live Epic sandbox, no OAuth, and no network access.
 ## Variants (one connector file each)
 
 | File | Variant | Resources (8) |
-|---|---|---|
+| --- | --- | --- |
 | [connector_provider.rb](connector_provider.rb) | **Provider / clinical** | Patient, Practitioner, Organization, Encounter, Appointment, Observation, Condition, MedicationRequest |
 | [connector_payer.rb](connector_payer.rb) | **Payer / coverage & claims** | Patient (member), Coverage, Claim, ExplanationOfBenefit, Organization, Practitioner, Encounter, Condition |
 
@@ -41,7 +41,7 @@ One action set covers all resources — the resource type is chosen via the `res
 pick list and I/O is driven by the dynamic schema.
 
 | Action | FHIR interaction | Behavior |
-|---|---|---|
+| --- | --- | --- |
 | `get_resource` | read `[type]/[id]` | Returns the matching resource, or raises a FHIR `OperationOutcome` not-found error. |
 | `search_resources` | search `[type]?params` | Structured param rows and/or a raw query string → a FHIR **Bundle** (`type: searchset`, `total`, `entry[]`). |
 | `create_resource` | create `POST [type]` | Generates `id` + `meta` (versionId 1, lastUpdated now), echoes the resource (simulated). |
@@ -51,7 +51,7 @@ pick list and I/O is driven by the dynamic schema.
 ### Triggers (polling)
 
 | Trigger | Behavior |
-|---|---|
+| --- | --- |
 | `new_resource` | Returns resources where `meta.lastUpdated > closure.since` (FHIR `_lastUpdated` semantics); first poll defaults `since` to `1970-01-01` so all flow once; dedup on `id`. |
 | `new_or_updated_resource` | Same pattern; dedup on `id@versionId` so a re-versioned resource can fire again. |
 
@@ -59,7 +59,7 @@ pick list and I/O is driven by the dynamic schema.
 
 `search_resources` accepts structured **param / value** rows and/or a raw FHIR query string:
 
-```
+```text
 [ResourceType]?param1=value1&param2=value2
 ```
 

@@ -17,7 +17,7 @@ credentials, sandbox provisioning, or a live tenant.
 ## Verticals (one connector file each)
 
 | File | Vertical | Organizations in seed data |
-|---|---|---|
+| --- | --- | --- |
 | [connector_financial_services.rb](connector_financial_services.rb) | Financial Services | Meridian Capital Bank (+ departments & cost centers) |
 | [connector_healthcare.rb](connector_healthcare.rb) | Healthcare | Cedar Valley Health System (clinicians shared with the Epic on FHIR mock) |
 | [connector_manufacturing.rb](connector_manufacturing.rb) | Manufacturing | Titan Industrial Equipment |
@@ -46,7 +46,7 @@ Four objects, each with a static Workday schema and internally-consistent seed r
 `Approved_By` resolves to a real seed record — no dangling references):
 
 | Object | Records | Key fields |
-|---|---|---|
+| --- | --- | --- |
 | **Worker** | 8 | Worker_ID, Employee_Number, Legal_Name *(nested)*, Preferred_Name *(nested)*, Email, Position_Title, Department, Cost_Center, Manager_ID, Hire_Date, Status, Worker_Type, Location, Work_Phone, Start_Date, Updated_At |
 | **Position** | 6 | Position_ID, Title, Department, Grade, Is_Open, Headcount_Budget, Incumbent_ID |
 | **Organization** | 5 | Org_ID, Name, Org_Type, Manager_ID, Parent_Org_ID, Member_Count |
@@ -58,7 +58,7 @@ Four objects, each with a static Workday schema and internally-consistent seed r
 **ID formats** match Workday's convention exactly:
 
 | Object | ID format | Seed range |
-|---|---|---|
+| --- | --- | --- |
 | Worker | `WD-EMP-{6 digits}` | `WD-EMP-000001` … `WD-EMP-000008` |
 | Position | `WD-POS-{6 digits}` | `WD-POS-000001` … `WD-POS-000006` |
 | Organization | `WD-ORG-{6 digits}` | `WD-ORG-000001` … `WD-ORG-000005` |
@@ -70,7 +70,7 @@ so they never collide with seed records.
 **The seed workforce** (a valid management hierarchy under Meridian Capital Bank):
 
 | Worker | Name | Title | Dept | Manager | Status | Type |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | `WD-EMP-000001` | Eleanor Vance | Chief Operating Officer | Executive | — | Active | Employee |
 | `WD-EMP-000002` | Marcus Reyes | Director of Human Resources | Human Resources | `…0001` | Active | Employee |
 | `WD-EMP-000003` | Priya Nair | Director of Information Technology | Technology | `…0001` | Active | Employee |
@@ -91,7 +91,7 @@ One action set covers all objects — the object is chosen via the `objects` pic
 is driven by the dynamic `object_definitions` schema.
 
 | Action | Behavior |
-|---|---|
+| --- | --- |
 | `get_record` | Object + ID → matching seed record, or a Workday-style `Invalid ID value` error. |
 | `search_records` | Object + structured filter rows and/or a free-text search string → `{ total, data }`. |
 | `create_record` | Generates a new Workday-style ID + timestamp, echoes the record (simulated). |
@@ -105,7 +105,7 @@ Unlike the Salesforce mock (one generic object trigger), Workday's triggers are 
 specific object and timestamp field**, matching the joiner / mover / leaver story:
 
 | Trigger | Object | Polls on | Dedup | Use case |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | `new_worker` | Worker | `Hire_Date > since` | `Worker_ID` | **Joiner** — someone is hired |
 | `new_or_updated_worker` | Worker | `Updated_At > since` | `Worker_ID@Updated_At` | **Mover** (dept change) / **Leaver** (`Status = Terminated`) |
 | `new_leave_request` | Leave_Request | `Submitted_Date > since` | `Leave_ID` | Leave management |
@@ -157,7 +157,7 @@ and then **building a recipe** that uses its actions/triggers — no local tooli
 **Operations (recipe trigger/action names)** — what you'll pick when adding a step:
 
 | Code | Recipe step name |
-|---|---|
+| --- | --- |
 | `get_record` | **Get record by ID** (action) |
 | `search_records` | **Search records** (action) |
 | `create_record` | **Create record** (action) |

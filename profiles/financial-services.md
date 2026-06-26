@@ -7,7 +7,7 @@
 ## Companies
 
 | Company | Role in the world | Where it appears |
-|---|---|---|
+| --- | --- | --- |
 | **Meridian Capital Bank** | Anchor enterprise (Workday tenant; Salesforce account #1) | Salesforce, Workday |
 | Harbor Mutual Insurance | Customer (insurance) | Salesforce account |
 | Vantage Wealth Advisors | Customer (wealth management) | Salesforce account |
@@ -18,7 +18,7 @@
 ## Workday — Meridian Capital Bank workforce
 
 | Worker | Name | Title | Dept | Manager | Status | Type |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | `WD-EMP-000001` | **Eleanor Vance** | Chief Operating Officer | Executive | — | Active | Employee |
 | `WD-EMP-000002` | **Marcus Reyes** | Director of Human Resources | Human Resources | …0001 | Active | Employee |
 | `WD-EMP-000003` | **Priya Raman** | Director of Information Technology | Technology | …0001 | Active | Employee |
@@ -28,7 +28,7 @@
 | `WD-EMP-000007` | Maria Santos | HR Generalist | Human Resources | …0002 | **On_Leave** | Employee |
 | `WD-EMP-000008` | **James Whitfield** | IT Support Contractor | Technology | …0003 | Active | **Contractor** · **leaver** |
 
-```
+```text
 Eleanor Vance (COO)
 ├── Marcus Reyes (Dir HR)
 │   └── Maria Santos (HR Generalist, On_Leave)
@@ -47,7 +47,7 @@ JML demo targets: open req `WD-POS-000005` (Senior Software Engineer); submitted
 **Contacts** (at the accounts above):
 
 | Name | Title | Company |
-|---|---|---|
+| --- | --- | --- |
 | **Eleanor Vance** | CFO | Meridian Capital Bank |
 | Raj Patel | VP, Treasury | Meridian Capital Bank |
 | Grace Okafor | Chief Risk Officer | Harbor Mutual Insurance |

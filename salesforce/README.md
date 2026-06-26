@@ -16,7 +16,7 @@ matches the prospect and run a believable, network-free Salesforce demo.
 ## Verticals (one connector file each)
 
 | File | Vertical | Sample accounts |
-|---|---|---|
+| --- | --- | --- |
 | [connector_financial_services.rb](connector_financial_services.rb) | Financial Services | Meridian Capital Bank, Harbor Mutual Insurance, Vantage Wealth Advisors, Cobalt Payments, Summit Credit Union, Ironclad Asset Management |
 | [connector_healthcare.rb](connector_healthcare.rb) | Healthcare / Life Sciences | Cedar Valley Health System, Northstar Pediatric Group, Helix Genomics, Asclepius Medical Devices, BlueRiver Health Plan, Meridian Home Care |
 | [connector_manufacturing.rb](connector_manufacturing.rb) | Manufacturing / Industrial | Titan Industrial Equipment, Ferrous Steel Works, Apex Robotics, Cascade Packaging, Continental Auto Parts, Granite Tooling |
@@ -37,7 +37,7 @@ Six objects, each with a static Salesforce schema and internally-consistent seed
 `OwnerId` in `User`; Cases reference a real `ContactId`):
 
 | Object | Records | Key fields |
-|---|---|---|
+| --- | --- | --- |
 | **Account** | 6 | Id, Name, Industry, AnnualRevenue, Type, OwnerId, Website, CreatedDate, LastModifiedDate |
 | **Contact** | 7 | Id, FirstName, LastName, Email, Title, AccountId, OwnerId, Phone, … |
 | **Lead** | 5 | Id, FirstName, LastName, Company, Email, Status, LeadSource, IsConverted, … |
@@ -48,7 +48,7 @@ Six objects, each with a static Salesforce schema and internally-consistent seed
 **Ids are identical across every vertical**, so any example Id works in any file:
 
 | Object | Id range |
-|---|---|
+| --- | --- |
 | User | `005RM0000001AAAAAA` … `005RM0000005EEEEEE` |
 | Account | `001RM0000001AAAAAA` … `001RM0000006AAAAAA` |
 | Contact | `003RM0000001AAAAAA` … `003RM0000007AAAAAA` |
@@ -66,7 +66,7 @@ One action set covers all objects — the object is chosen via the `objects` pic
 I/O is driven by the dynamic `object_definitions` schema.
 
 | Action | Behavior |
-|---|---|
+| --- | --- |
 | `get_record` | Object + Id → matching seed record, or a Salesforce-style `NOT_FOUND` error. |
 | `search_records` | Object + structured filter rows and/or a raw SOQL-lite string → `{ totalSize, done, records }`. |
 | `create_record` | Generates a new Id + `CreatedDate`/`LastModifiedDate = now`, echoes the record (simulated). |
@@ -77,7 +77,7 @@ I/O is driven by the dynamic `object_definitions` schema.
 ### Triggers (polling)
 
 | Trigger | Behavior |
-|---|---|
+| --- | --- |
 | `new_record` | Returns seed records where `CreatedDate > closure.since`; first poll defaults `since` to `1970-01-01` so all flow once; dedup on `Id`. |
 | `new_or_updated_record` | Same pattern keyed on `LastModifiedDate`. |
 
@@ -85,7 +85,7 @@ I/O is driven by the dynamic `object_definitions` schema.
 
 `search_records` accepts a raw query in a small SOQL subset:
 
-```
+```text
 SELECT <fields|*> FROM <Object> [WHERE <field> <op> <value> [AND <field> <op> <value> ...]]
 ```
 
@@ -133,7 +133,7 @@ re-save to switch verticals between demos.
 **Operations (recipe trigger/action names)** — what you'll pick when adding a step:
 
 | Code | Recipe step name |
-|---|---|
+| --- | --- |
 | `get_record` | **Get record by ID** (action) |
 | `search_records` | **Search records** (action) |
 | `create_record` | **Create record** (action) |

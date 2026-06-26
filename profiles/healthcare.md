@@ -12,7 +12,7 @@ its clinicians are the same people in Epic, Workday, and Salesforce.
 ## Companies
 
 | Company | Role in the world | Where it appears |
-|---|---|---|
+| --- | --- | --- |
 | **Cedar Valley Health System** | Anchor health system (Workday tenant; Salesforce account #1; Epic provider org) | Salesforce, Epic Provider, Epic Payer, Workday |
 | **BlueRiver Health Plan** | Payer | Salesforce account, Epic Payer org |
 | Cedar Valley Cardiology | Cedar Valley's cardiology department | Epic Provider org |
@@ -24,7 +24,7 @@ its clinicians are the same people in Epic, Workday, and Salesforce.
 ## Workday — Cedar Valley Health System workforce
 
 | Worker | Name | Title | Dept | Manager | Status | Type |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | `WD-EMP-000001` | **Eleanor Vance** | Chief Medical Officer | Executive | — | Active | Employee |
 | `WD-EMP-000002` | **Marcus Reyes** | Director of Human Resources | Human Resources | …0001 | Active | Employee |
 | `WD-EMP-000003` | **Priya Raman** | Director of Primary Care | Primary Care | …0001 | Active | Employee |
@@ -34,7 +34,7 @@ its clinicians are the same people in Epic, Workday, and Salesforce.
 | `WD-EMP-000007` | Maria Santos | HR Generalist | Human Resources | …0002 | **On_Leave** | Employee |
 | `WD-EMP-000008` | **James Whitfield** | IT Support Contractor | Information Technology | …0003 | Active | **Contractor** · **leaver** |
 
-```
+```text
 Eleanor Vance (CMO)
 ├── Marcus Reyes (Dir HR)
 │   └── Maria Santos (HR Generalist, On_Leave)
@@ -53,7 +53,7 @@ JML demo targets: open req `WD-POS-000005` (Nurse Practitioner); submitted leave
 **Practitioners** (Cedar Valley clinicians — the *same people* as the Workday directors above):
 
 | Epic id | Name | Specialty | Also in Workday as |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `prac-raman` | **Priya Raman, MD** | Family Medicine / PCP | Director of Primary Care (`WD-EMP-000003`) |
 | `prac-mercer` | **Alan Mercer, MD** | Cardiovascular Disease | Director of Cardiology (`WD-EMP-000004`) |
 | `prac-greer` | **Tobias Greer, MD** | Hospitalist | Hospitalist (`WD-EMP-000006`) |
@@ -61,7 +61,7 @@ JML demo targets: open req `WD-POS-000005` (Nurse Practitioner); submitted leave
 **Patients / members** (Epic only — Cedar Valley's patients; BlueRiver's insured):
 
 | Epic id | Name | Notes |
-|---|---|---|
+| --- | --- | --- |
 | `pat-mreynolds` | Martha Reynolds | Hypertension; BlueRiver member `BRH-100482` |
 | `pat-jcalderon` | James Calderon | Type 2 diabetes; BlueRiver member `BRH-100513` |
 | `pat-snguyen` | Sofia Nguyen | Annual physical; BlueRiver member `BRH-100547` |
@@ -72,7 +72,7 @@ JML demo targets: open req `WD-POS-000005` (Nurse Practitioner); submitted leave
 **Contacts:**
 
 | Name | Title | Company |
-|---|---|---|
+| --- | --- | --- |
 | **Eleanor Vance** | Chief Medical Officer | Cedar Valley Health System |
 | Raj Patel | VP, Clinical Informatics | Cedar Valley Health System |
 | Grace Okafor | Director of Revenue Cycle | Northstar Pediatric Group |
