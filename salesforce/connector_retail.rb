@@ -917,12 +917,12 @@
     mock_data: lambda do
       {
         'User' => [
-          { 'Id' => '005RM0000001AAAAAA', 'Name' => 'Dana Whitfield',
-            'Email' => 'dwhitfield@demo-retail.example.com', 'IsActive' => true,
-            'Username' => 'dwhitfield@demo-retail.example.com' },
-          { 'Id' => '005RM0000002BBBBBB', 'Name' => 'Marcus Lindqvist',
-            'Email' => 'mlindqvist@demo-retail.example.com', 'IsActive' => true,
-            'Username' => 'mlindqvist@demo-retail.example.com' },
+          { 'Id' => '005RM0000001AAAAAA', 'Name' => 'James Whitfield',
+            'Email' => 'jwhitfield@demo-retail.example.com', 'IsActive' => true,
+            'Username' => 'jwhitfield@demo-retail.example.com' },
+          { 'Id' => '005RM0000002BBBBBB', 'Name' => 'Marcus Reyes',
+            'Email' => 'mreyes@demo-retail.example.com', 'IsActive' => true,
+            'Username' => 'mreyes@demo-retail.example.com' },
           { 'Id' => '005RM0000003CCCCCC', 'Name' => 'Priya Raman',
             'Email' => 'praman@demo-retail.example.com', 'IsActive' => true,
             'Username' => 'praman@demo-retail.example.com' },
@@ -962,8 +962,8 @@
         ],
 
         'Contact' => [
-          { 'Id' => '003RM0000001AAAAAA', 'FirstName' => 'Eleanor', 'LastName' => 'Voss',
-            'Email' => 'eleanor.voss@larkandfinch.example.com', 'Title' => 'VP E-commerce',
+          { 'Id' => '003RM0000001AAAAAA', 'FirstName' => 'Eleanor', 'LastName' => 'Vance',
+            'Email' => 'eleanor.vance@larkandfinch.example.com', 'Title' => 'VP E-commerce',
             'AccountId' => '001RM0000001AAAAAA', 'OwnerId' => '005RM0000001AAAAAA',
             'Phone' => '+1-212-555-0142',
             'CreatedDate' => '2025-01-15T10:00:00Z', 'LastModifiedDate' => '2026-05-02T16:41:00Z' },
